@@ -1,12 +1,4 @@
-//Je récupère mes donnès des articles en JSON
-//const articles = require('../../data/articles.json');
-
-//Connexion à la BDD
-const { Client } = require('pg'); 
-const client = new Client(); 
-client.connect();
-
-
+const client = require('../database');
 
 const articlesController = {
 
@@ -52,18 +44,12 @@ const articlesController = {
 
                 //Je rends ma page article en lui passant les données d'un article
                 response.render('article', { article: data.rows[0] });
-
-
                 
             }
 
             
 
-        });
-
-        
- 
-        
+        });     
         
     }
     

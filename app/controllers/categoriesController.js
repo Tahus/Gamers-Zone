@@ -1,8 +1,4 @@
-
-//Connexion à la BDD
-const { Client } = require('pg'); 
-const client = new Client(); 
-client.connect();
+const client = require('../database');
 
 const categoriesController = {
 
