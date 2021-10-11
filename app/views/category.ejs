@@ -1,0 +1,26 @@
+<%- include('./partial/header') %>
+
+<h1 class="display-category-title"><%= category.name %>  </h1>
+
+<div class="display-categories">
+
+    <% for (article of articles){ %>
+  
+
+        <div class="display-category">
+                <img class="display-category-img" src= "<%= article.url_image %>">
+                <div class="display-category-p">
+                    <h2><%= article.title %></h2>
+                    <p><%= article.description %></p>
+                    <p><%= article.media_type %></p>
+                    <a href="/articles/<%= article.id %>" class="display-category-link">Découvrir</a>
+                </div>
+        </div>
+
+    <% } %>
+
+
+
+</div>    
+
+<%- include('./partial/footer') %>
