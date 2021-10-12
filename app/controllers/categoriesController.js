@@ -1,13 +1,10 @@
-const client = require('../database');
+const dataMapper = require('../dataMapper');
 
 const categoriesController = {
 
     getCategoriesList : (request, response) => {
 
-        //Je définit ma requete SQL
-        const queryCategories = 'SELECT * FROM categories;';
-        //Je lance la requête vers la BDD
-        client.query(queryCategories,(error, data) => {
+        dataMapper.getCategoriesPageRequest((error, data) => {
             //l'execution se fera une fois que la BDD aura répondu a la requête
             if (error){
                 console.log(error);
@@ -24,16 +21,11 @@ const categoriesController = {
 
     getOneCategoryArticles: (request, response) => {
 
-        console.log('---> #01');
-
         const categoryId = Number(request.params.id);
-        //Je définit ma requete SQL destinée à être envoyé à la BDD
-        const queryCategoryArticles  = `SELECT * FROM articles WHERE categories_id = ${categoryId}`;
-
-        console.log('---> #02');
 
         //Je lance la requête vers la BDD
-        client.query(queryCategoryArticles,(errorCategoryArticles, dataCategoryArticles) => {
+        dataMapper.getCategoryByIdRequest (categoryId,(errorCategoryArticles, dataCategoryArticles) => {
+
             console.log('---> #03');
             //l'execution se fera une fois que la BDD aura répondu a la requête
             if (errorCategoryArticles){
@@ -50,8 +42,9 @@ const categoriesController = {
 
                 //J'ai besoin du titre de ma catégorie en question
                 //Je refais une query SQL
-                const queryCategory = `SELECT name FROM categories WHERE id=${categoryId}`;
-                client.query(queryCategory,(errorCategory, dataCategory) =>{
+                
+                dataMapper.getOneCategoryTitleRequest (categoryId, (errorCategory, dataCategoryTitle) => {
+                    
                     console.log('---> #04');
                     if(errorCategory){ 
                         console.log('---> #04 --> ERROR');
@@ -60,7 +53,7 @@ const categoriesController = {
                         console.log('---> #04 --> `SUCCESS`');
 
                         //J'accède au 1er élément d'objet categories
-                        const category = dataCategory.rows[0];
+                        const category = dataCategoryTitle.rows[0];
                         console.log('hello', category);
                         
                         //Je rends ma page categories en lui passant les données de mes articles

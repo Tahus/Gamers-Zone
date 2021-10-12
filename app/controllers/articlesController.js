@@ -1,14 +1,14 @@
-const client = require('../database');
+
+
+const dataMapper = require('../dataMapper');
 
 const articlesController = {
 
     
     getArticlesPage : (request, response) => {
 
-        //Je définit ma requete SQL
-        const queryArticles = 'SELECT * FROM articles;';
-        //Je lance la requête vers la BDD
-        client.query(queryArticles,(error, data) => {
+        // déclaration d'une fonction annonyme
+        dataMapper.getArticlesPageRequest((error, data) => {
             //l'execution se fera une fois que la BDD aura répondu a la requête
             if (error){
                 console.log(error);
@@ -18,10 +18,10 @@ const articlesController = {
                 //Je rends ma page articles en lui passant les donnéesdela liste des articles
                 response.render('articles', { articles: data.rows });
             }
-        }); 
+        });
 
 
-       
+        
     },
 
 
@@ -32,9 +32,8 @@ const articlesController = {
         // articleId => l'ID prèsent dans mon URL
         const articleId = request.params.id;
 
-        const queryOneArticle = `SELECT * FROM articles WHERE id=${articleId}`;
+        dataMapper.getArticleByIdRequest(articleId, (error, data) => {
 
-        client.query(queryOneArticle, (error, data)=>{
             if (error){
                 console.log(error);
             } else {
@@ -46,8 +45,6 @@ const articlesController = {
                 response.render('article', { article: data.rows[0] });
                 
             }
-
-            
 
         });     
         
