@@ -2,7 +2,7 @@
 BEGIN;
 
 -- On commence par supprimer les tables si elles existent
-DROP TABLE IF EXISTS "articles_has_categories", "articles", "users", "categories";
+DROP TABLE IF EXISTS  articles, "users", categories;
 
 -- 1ère table
 
@@ -25,7 +25,7 @@ CREATE TABLE "articles" (
   "description" TEXT NOT NULL,
   "url_image" TEXT NOT NULL,
   "media_type" TEXT NOT NULL,
-  -- Notre colonne "categories_id" référencera la colonne "id" de la table "categories"
+  "categories_id" INTEGER NOT NULL REFERENCES "categories"("id"),
   "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   "updated_at" TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
@@ -35,7 +35,7 @@ CREATE TABLE "articles" (
 CREATE TABLE "users" (
   "id" INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   "name" TEXT NOT NULL,
-  "email" TEXT NOT NULL,
+  "email" TEXT NOT NULL UNIQUE,
   "password" TEXT NOT NULL,
   "birth_date" TEXT NOT NULL,
   "url_picture" TEXT NOT NULL,
@@ -43,14 +43,6 @@ CREATE TABLE "users" (
   "updated_at" TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
--- Dernière table, celle de liaison entre nos catégories et nos articles
-CREATE TABLE "articles_has_categories" (
-  "id" INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-  "articles_id" INTEGER NOT NULL REFERENCES "articles"("id") ON DELETE CASCADE,
-  "categories_id" INTEGER NOT NULL REFERENCES "categories"("id"),
-  "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-  "updated_at" TIMESTAMPTZ NOT NULL DEFAULT NOW()
-);
 
 -- SEEDING
 
