@@ -24,7 +24,7 @@ const categoriesController = {
         const categoryId = Number(request.params.id);
 
         //Je lance la requête vers la BDD
-        dataMapper.getCategoryByIdRequest (categoryId,(errorCategoryArticles, dataCategoryArticles) => {
+        dataMapper.getArticlesByCategoryIdRequest (categoryId,(errorCategoryArticles, dataCategoryArticles) => {
 
             console.log('---> #03');
             //l'execution se fera une fois que la BDD aura répondu a la requête

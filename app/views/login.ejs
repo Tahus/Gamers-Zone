@@ -1,0 +1,32 @@
+<%- include('./partial/header') %>
+
+
+<form class= "form-login" method="POST">
+    <h1 class= "form-login-title"> Me Connecter </h1>
+
+    <div class="form-login-inputs">
+        <label for="emailUser" class="label-email">E-mail</label>
+        <input type="text" id="emailUser" class="input-email" name="email" placeholder="user@player.com" required autofocus>
+
+        <label for="psw" class = "label-psw">Mot De Passe</label>
+   
+        <input type="password" id="psw" class="input-psw" name="password" placeholder="4 characters minimum" minlength="4" required autofocus>
+        <a class="psw-forget">mot de passe oublié?</a>
+    </div>
+    
+    <button class="form-login-button" type="submit">Valider</button>
+
+</form>
+
+<div class="signup-content">
+    <h2 class = "signup-title">Pas encore inscrit?</h2>
+
+    <p class="signup-text">Lâches ta manette, et cliques plutôt <a href="/signup" class="signup-link">par ici !</a></p>
+
+</div>
+
+
+
+
+
+<%- include('./partial/footer') %>

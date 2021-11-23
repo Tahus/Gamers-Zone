@@ -1,0 +1,52 @@
+<%- include('./partial/header') %>
+
+<div class="form-signup">
+    <form action="/addUser" method="post">
+      <h1>Inscription</h1>
+  
+      <div class="form-user">
+        <label for="avatar">*Avatare:</label>
+        <input type="file" name="avatar" id="avatar" accept="image/png, image/jpeg" required>
+      </div>
+
+      <div class="form-user">
+        <label for="name">*Pseudo :</label>
+        <input type="text" name="name" id="name" placeholder="Pseudo" required>
+      </div>
+  
+      <div class="form-user">
+        <label for="email">*Adresse mail :</label>
+        <input type="email" name="email" id="email" placeholder="E-mail" required>
+      </div>
+  
+      <div class="form-user">
+        <label for="birth_date">*Date de naissance :</label>
+        <input type="date" name="birth_date" id="birthdate" placeholder="JJ/MM/AAAA" required>
+      </div>
+        
+      <div class="form-user">
+        <label for="password">*Mot De Passe :</label>
+        <input type="password" name="password" id="password" placeholder="Mot De Passe" minlength="4" required >
+        <p class="psw-legend legend">(4 characteres minimum)</p>
+      </div>
+      
+      <div class="form-user">
+        <label for="repeat_password">*Confirmer le mot de passe :</label>
+        <input type="password" name="repeat_password" id="repeat-password" placeholder="Mot De Passe" minlength="4" required >
+      </div>
+
+
+      <p class="require-legend legend">* Champs requis</p>
+  
+      <div class="form-user">
+        <input type="submit" value="Valider" class="button-signup">
+      </div>
+  
+    </form>
+
+    
+  </div>
+
+
+
+<%- include('./partial/footer') %>

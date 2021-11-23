@@ -1,0 +1,39 @@
+/****************HEADER NAV ***********************/
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(215, 240, 250);
+    position: fixed; 
+    height: 110px;
+    top: 0; 
+    left: 0; 
+    right: 0;
+}
+
+
+.logo {
+    padding-top: 55px;
+    position: absolute;
+    left: -4%;
+}
+
+
+.header__nav ul {
+    display: flex;
+    justify-content: center;
+    
+}
+
+.header__nav ul li {
+    margin-right: 160px;
+    margin-left:137px ;
+    list-style: none;
+}
+
+.button {
+    font-weight: bold;
+    text-decoration: none;
+    color: #ff7818;
+}

@@ -6,10 +6,11 @@ const authController= require('./controllers/authController');
 const articlesController= require('./controllers/articlesController');
 const categoriesController= require('./controllers/categoriesController');
 const contactController = require('./controllers/contactController');
+const signupController= require('./controllers/signupController');
 
 
 
-//je mets mon routeur en place
+//je mets  en place mon routeur
 
 const router = express.Router();
 
@@ -28,7 +29,20 @@ router.get('/categories/:id', categoriesController.getOneCategoryArticles);
 router.get('/contact', contactController.getContactPage);
 
 //Login
-router.get('/Login', authController,LoginUserForm);
+router.get('/Login', authController.getLoginForm);
+router.post('/Login', authController.loginUser );
+
+//route pour la page d'inscription 
+router.get('/signup', signupController.getSignupUser);
+router.post('/addUser', signupController.addUser);
+
+
+//route pour la page de profil connectés
+
+router.get('/user/:id', signupController.getProfilPage);
+router.patch('/user/:id', signupController.updateProfilPage);
+
+
 
 
 

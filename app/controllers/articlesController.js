@@ -15,7 +15,7 @@ const articlesController = {
             } else {
                 console.log(data.rows);//.rows sera toujours un tableau 
 
-                //Je rends ma page articles en lui passant les donnéesdela liste des articles
+                //Je rends ma page articles en lui passant les données dela liste des articles
                 response.render('articles', { articles: data.rows });
             }
         });

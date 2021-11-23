@@ -1,0 +1,105 @@
+/**********LOGIN***************/
+
+.form-login {
+    width : 100%;
+}
+
+.form-login-title {
+    font-size: xx-large;
+    text-align: center;
+    text-shadow:  6px -3px 4px rgba(48,21,13,0.23);
+}
+
+.form-login-inputs {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    position: absolute;
+    left: 44%;
+    width: 12%;
+    padding: 45px 0 45px 0;
+    
+}
+
+
+/*********************E-MAIL*****************/
+
+.label-email {
+    text-align: center;
+    font-size: larger;
+    padding-bottom: 12px; 
+}
+
+::placeholder {
+    text-align: center;
+    font-size: large;
+}
+
+.input-email {
+    height: 33px;
+    padding-left: 20px;
+    border-radius: 17px;
+    margin-bottom: 25px;
+}
+
+
+
+
+/*****************PASSWORD****************/
+
+
+.label-psw {
+    text-align: center;
+    font-size: larger;
+    padding-bottom: 12px
+}
+
+
+.input-psw {
+    padding-left: 20px;
+    height: 33px;
+    border-radius: 17px;
+}
+
+.psw-forget {
+    padding-top: 5px;
+    padding-left: 12px;
+    color: rgb(141, 9, 141);
+    text-decoration: underline;
+}
+
+
+/*********BOUTON VALIDER**********/
+
+.form-login-button {
+    position : absolute;
+    left: 48%;
+    bottom: 42%;
+    width: 95px;
+    height: 33px;
+    border-radius: 14px;
+}
+
+
+
+/*********LIEN VERS PAGE INSCRIPTION***********/
+
+.signup-container {
+    width: 100%;
+   
+}
+
+
+.signup-title {
+    position: absolute;
+    bottom: 23%;
+    left: 45%;
+    font-size: xx-large;
+    text-shadow:  6px -3px 4px rgba(48,21,13,0.23);
+}
+
+.signup-text {
+    position: absolute;
+    bottom: 19%;
+    left: 44%;
+}

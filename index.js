@@ -9,15 +9,46 @@ const express = require('express');
 //J'execute express 
 const app = express();
 
+//J'ajoute le middleware d'express (body parser) afin de pouvoir utiliser req.body
+//ce MDW récupère les infos du POST, il le stock dans un objet(request)
+//Puis il le passe en paramètre (request.body) à la methode en question
+app.use(express.urlencoded({extended: true}));
+
 // utilise le moteur de rendu EJS
 app.set('view engine', 'ejs');
+
 //renseigne le dossier des vues
 app.set('views', './app/views');
+
 //renseigne la position du dossier statique
 app.use(express.static('./app/public'));
 
 //J'importe mon router 
 const router = require('./app/router');
+
+
+//on met en place le système de session après l'installation du package express-session
+const session = require('express-session');
+app.use(session(
+    {
+        secret: process.env.SESSION_SECRET,
+        resave: true,
+        saveUninitialized: true
+    }
+));
+
+app.use((request, response, next) => {
+    //si la propriété userInfo de la session vaut undefined, on la crée
+    if (!request.session.userInfo) {
+        request.session.userInfo = [];
+        console.log( 'request mdw', request.session.userInfo);
+        // si elle est déjà crée on y met le resultat dans locals.userInfo  
+    } else {
+        response.locals.userInfo = request.session.userInfo;
+    }
+    next();
+});
+
 //Je fais marcher mon router dans mon appli
 app.use(router);
 
