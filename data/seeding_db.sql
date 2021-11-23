@@ -154,7 +154,7 @@ de raisons de sauver la veuve et l''orphelin.', 'https://cdn.pixabay.com/photo/2
 
 
 --La table d'utilisateurs
-INSERT INTO "users" ("name","email","birth_date", "password", "url_picture" ) VALUES
+INSERT INTO "users" ("user_name","email","birth_date", "password", "url_picture" ) VALUES
 ( 'Alfred', 'a.martins@gamer.com', '08/12/1988', '12345', 'https://cdn.pixabay.com/photo/2013/07/13/10/07/man-156584_960_720.png'),
 ('Gaara', 'g.chunins@gamer.com','12/09/2002', '12345', 'https://cdn.pixabay.com/photo/2021/07/03/10/54/naruto-6383641_960_720.png'),
 ('Selena', 's.loranos@gamer.com','10/02/1999', '12345', 'https://cdn.pixabay.com/photo/2021/09/11/20/36/woman-6616607_960_720.png'),

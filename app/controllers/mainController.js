@@ -1,8 +1,25 @@
+const dataMapper = require('../dataMapper');
+
+
 const mainController = {
-    getHomePage : (request, response) => {
-        //Je rends la page home
-        response.render('home');
+
+    
+    getHomePage :  async(request, response) => {
+    
+        //Je stock ma methode du dataMapper dans une variable 
+        const articles = await dataMapper.getHomesArticlesRequest ();
+
+        //Je rends la page home en lui passant les données des articles
+        response.render('home', {articles});
+            
+        
+        
+        
+   
+
+       
     }
+    
 };
 
 

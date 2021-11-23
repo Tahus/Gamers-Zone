@@ -2,32 +2,45 @@ const express = require('express');
 
 // J'utilise mes controllers
 const mainController = require('./controllers/mainController');
+const authController= require('./controllers/authController');
 const articlesController= require('./controllers/articlesController');
 const categoriesController= require('./controllers/categoriesController');
 const contactController = require('./controllers/contactController');
+const signupController= require('./controllers/signupController');
 
 
 
-//je mets mon routeur en place
+//je mets  en place mon routeur
 
 const router = express.Router();
 
 
 router.get('/', mainController.getHomePage);
 
-//route por acceder à touts mes articles 
+//Articles
 router.get('/articles', articlesController.getArticlesPage);
-//route pour acceder au détail d'un seul article
 router.get('/articles/:id', articlesController.getOneArticle);
 
-// route pour afficher la page de toutes mes categories
+// Categories
 router.get('/categories', categoriesController.getCategoriesList);
-//route qui affiche mes articles dans les catègories
 router.get('/categories/:id', categoriesController.getOneCategoryArticles);
+
 //route pour acceder à la page contact
 router.get('/contact', contactController.getContactPage);
 
+//Login
+router.get('/Login', authController.getLoginForm);
+router.post('/Login', authController.loginUser );
 
+//route pour la page d'inscription 
+router.get('/signup', signupController.getSignupUser);
+router.post('/addUser', signupController.addUser);
+
+
+//route pour la page de profil connectés
+
+router.get('/user/:id', signupController.getProfilPage);
+router.patch('/user/:id', signupController.updateProfilPage);
 
 
 

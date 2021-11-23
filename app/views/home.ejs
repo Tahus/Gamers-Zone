@@ -2,4 +2,31 @@
 
     <h1>Gamer's Zone</h1>
 
+    <h2> Les articles récents</h2>
+
+    <ul class="articles">
+             
+        <!--J'ai accès à articles car je l'ai passé en paramètre dans mon controller-->
+        
+        <% for (let article of articles ) { %>
+           <li class="article">
+               <a href="/articles/<%= article.id %>">
+
+                   <%= article.title %>
+                   
+               </a>
+               <div class="article-avatar">
+                   <img src="<%= article.url_image%>">
+               </div>
+               
+                  <div class="article-media">
+                      <%= article.media_type %>
+                  </div>
+               
+           </li>
+
+       <% } %>
+    </ul>
+    
+
 <%- include('./partial/footer') %>

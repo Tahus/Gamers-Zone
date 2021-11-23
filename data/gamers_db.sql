@@ -34,7 +34,7 @@ CREATE TABLE "articles" (
 
 CREATE TABLE "users" (
   "id" INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-  "name" TEXT NOT NULL,
+  "user_name" TEXT NOT NULL,
   "email" TEXT NOT NULL UNIQUE,
   "password" TEXT NOT NULL,
   "birth_date" TEXT NOT NULL,
