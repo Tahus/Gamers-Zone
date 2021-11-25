@@ -33,7 +33,7 @@ const authController = {
                 //les infos du user persistent une fois loggé
                 request.session.userInfo = data.rows[0];
                 console.log( 'ma request', request.session.userInfo);
-                response.redirect(`/user/${data.rows[0].id}`);
+                response.redirect(`/user/${data.rows.id}`);
 
                 //Si l'utilisateur existe
                 if (data.rows.length > 0) {

@@ -34,10 +34,17 @@ const dataMapper = {
         const queryArticles = 'SELECT * FROM articles;';
         client.query(queryArticles, callback);     
     },
+
+
     //Je récupère un article
     getArticleByIdRequest: (articleId, callback) => {
 
-        const queryOneArticle = `SELECT * FROM articles WHERE id=${articleId}`;
+        const queryOneArticle = {
+
+            text : `SELECT * FROM articles WHERE id=$1 ;`,
+            values : [articleId]
+        };
+
         //la méthode appelée utilise client.query(pg) pour appeler la BDD
         client.query(queryOneArticle, callback);
     },
@@ -52,13 +59,25 @@ const dataMapper = {
 
     //Je récupère une categorie, ma méthode attend en paramètre : un ID et une fonction callback
     getArticlesByCategoryIdRequest : (categoryId, callback) =>{
-        const queryCategoryArticles  = `SELECT * FROM articles WHERE categories_id = ${categoryId}`;
+        const queryCategoryArticles  = {
+
+            text : `SELECT * FROM articles WHERE categories_id = $1;`,
+            values : [categoryId]
+        };
+        
         client.query(queryCategoryArticles, callback);
     },
 
+
+    
     // Je récupère seulement le titre de ma categorie
     getOneCategoryTitleRequest: (categoryId, callback) => {
-        const queryCategoryTitle = `SELECT name FROM categories WHERE id=${categoryId}`;
+        const queryCategoryTitle = {
+            
+            text : `SELECT name FROM categories WHERE id= $1;`,
+            values : [categoryId]
+        };
+
         client.query(queryCategoryTitle, callback);
     },
 
@@ -66,19 +85,14 @@ const dataMapper = {
     addUserRequest : (userInfo, callback  ) => {
         console.log('dataMapper', userInfo);
         
-        const queryAddUser = (`INSERT INTO users ("user_name", "email", "birth_date", "url_picture", "password")
-                               VALUES ( 
-                                   '${userInfo.name}', 
-                                   '${userInfo.email}', 
-                                   '${userInfo.birth_date}', 
-                                   '${userInfo.avatar}', 
-                                   '${userInfo.password}') RETURNING id`);
-        
-                                   
-        console.log('ma query :'  , queryAddUser);
-        
+        const queryAddUser = { 
 
-        
+            text : (`INSERT INTO users ("user_name", "email", "birth_date", "url_picture", "password")
+                    VALUES ( $1, $2, $3, $4, $5) RETURNING id;`),
+            
+            values : [userInfo.name, userInfo.email, userInfo.birth_date, userInfo.avatar, userInfo.password]
+
+        };
 
         client.query(queryAddUser, callback);
 
@@ -87,7 +101,12 @@ const dataMapper = {
     //J'accède au profil de l'utilisateur inscrit ou connecté
     getUserByIdRequest: (userId, callback) => {
 
-        const queryOneUser = `SELECT * FROM users WHERE id=${userId}`;
+        const queryOneUser = {
+
+            text : `SELECT * FROM users WHERE id=$1;`,
+            values : [userId],
+
+        };
         
         client.query(queryOneUser, callback);
     },
@@ -95,10 +114,17 @@ const dataMapper = {
     //Je récupère les données de l'user qui veut se logger
     getUserByUserinfoRequest : (userLogs, callback) => {
 
-        const queryUserByInfosLogs = `SELECT * FROM users WHERE email =$1 AND password =$2`;
+        const queryUserByInfosLogs = {
+
+            text :`SELECT * FROM users WHERE email =$1 AND password =$2;`,
+
+            //En requête préparée, SQL s'attends à avoir un tableau dans lesquel rechercher dans l'ordre les données qui correspondent à $1,$2, etc..
+            values : [userLogs.email, userLogs.password]
+
+        };
         
-        //En requête préparée, SQL s'attends à avoir un tableau dans lesquel rechercher dans l'ordre les données qui correspondent à $1,$2, etc..
-        client.query(queryUserByInfosLogs, [userLogs.email, userLogs.password], callback);
+        
+        client.query(queryUserByInfosLogs, callback);
     },
 
 
