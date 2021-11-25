@@ -41,8 +41,8 @@ app.use((request, response, next) => {
     //si la propriété userInfo de la session vaut undefined, on la crée
     if (!request.session.userInfo) {
         request.session.userInfo = [];
-        console.log( 'request mdw', request.session.userInfo);
-        // si elle est déjà crée on y met le resultat dans locals.userInfo  
+        
+        // sinon elle est déjà crée on y met le resultat dans locals.userInfo  
     } else {
         response.locals.userInfo = request.session.userInfo;
     }

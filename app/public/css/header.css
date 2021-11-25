@@ -14,21 +14,22 @@
 
 
 .logo {
-    padding-top: 55px;
-    position: absolute;
-    left: -4%;
+   
 }
 
+.header__nav {
+    flex :1;
+}
 
 .header__nav ul {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    width: 100%;
     
 }
 
 .header__nav ul li {
-    margin-right: 160px;
-    margin-left:137px ;
+    
     list-style: none;
 }
 

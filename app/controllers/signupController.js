@@ -75,15 +75,12 @@ const signupController = {
         
         //locals permet de faire le pont entre mon back et mon front(ejs) pour y envoyer mes données
         response.locals.userInfo = request.session.userInfo;
-    
-        console.log( 'locals infos dans signupController:', response.locals.userInfo  );
+
+        //Je rends ma pagede profil avec les infos de l'user connecté
         response.render( 'user' );
 
     },
 
-    updateProfilPage : (request, response) => {
-        console.log('body', request.body);
-    }
 }; 
 
  

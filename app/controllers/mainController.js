@@ -11,11 +11,6 @@ const mainController = {
 
         //Je rends la page home en lui passant les données des articles
         response.render('home', {articles});
-            
-        
-        
-        
-   
 
        
     }

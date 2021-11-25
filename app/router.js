@@ -40,7 +40,7 @@ router.post('/addUser', signupController.addUser);
 //route pour la page de profil connectés
 
 router.get('/user/:id', signupController.getProfilPage);
-router.patch('/user/:id', signupController.updateProfilPage);
+
 
 
 
