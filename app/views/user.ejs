@@ -7,6 +7,7 @@
     <% if (locals?.userInfo) { %>
      <p>connecté(e) en tant que</p>
      <b><%= locals?.userInfo.user_name %> </b>
+        <img src= <%=locals.userInfo.url_picture %> >
 
     
     <% } else { %>
