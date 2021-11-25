@@ -6,20 +6,8 @@
 
     <% if (locals?.userInfo) { %>
      <p>connecté(e) en tant que</p>
-     <b><%= locals.userInfo.user_name %> </b>
+     <b><%= locals?.userInfo.user_name %> </b>
 
-     <form action="/user/<%=locals.userInfo.id%>" method="patch">
-    
-     <div class="form-user">
-        <label for="name">*Pseudo :</label>
-        <input type="text" name="name" id="name" placeholder= "<%= locals.userInfo.user_name %>" required>
-      </div>
-
-      <div class="form-user">
-        <input type="submit" value="Valider" class="button-signup">
-      </div>
-  
-    </form>
     
     <% } else { %>
         <p>Pas d'infos trouvès !</p>

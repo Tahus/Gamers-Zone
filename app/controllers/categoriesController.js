@@ -56,7 +56,7 @@ const categoriesController = {
                         const category = dataCategoryTitle.rows[0];
                         console.log('hello', category);
                         
-                        //Je rends ma page categories en lui passant les données de mes articles
+                        //Je rends ma page categories en lui passant les données de mes articles (elles sonts rajoutés dans l'objet locals )
                         response.render('category', { articles, category }); 
                     }
 

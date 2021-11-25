@@ -23,10 +23,16 @@
             <ul>
                 <li><a class="button button--menu" href="/">Accueil</a></li>
                 <li><a class="button button--menu" href="/categories">Catégories</a></li>
-                <li><a class="button button--menu" href="/articles">Touts les articles</a></li>
+                <li><a class="button button--menu" href="/articles">Articles</a></li>
                 <li><a class="button button--menu" href="/contact">Contact</a></li>
-                <li><a class="button button--menu" href="/Login">Se Connecter/s'inscrire</a></li>
                 
+                <% if (locals.userInfo)  { %> 
+                    <li><a class="button button--menu" href="/user/<%=locals.userInfo.id %>" >
+                    <%= locals.userInfo.user_name %>
+                    </a></li>
+                <% } else  {  %>
+                <li><a class="button button--menu" href="/Login">Se Connecter/s'inscrire</a></li>
+                <% } %> 
             </ul>
         </nav>
     </header>

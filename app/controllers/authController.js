@@ -16,10 +16,10 @@ const authController = {
     loginUser : (request, response) => {
 
         //Je récupère les infos du login de l'user qui cherche
-        // à se connecter
+        // à se connecter et les stock dans une variable
         const userLogs =  request.body;
 
-        console.log('my user logs:' , userLogs);
+        console.log('contenus de userlogs:' , userLogs);
         // puis verifier dans la BDD si il exite bien un user
         //avec ses infos (dans la dataMapper)
         
@@ -30,18 +30,28 @@ const authController = {
             } else {
                 console.log('resultat du data ', data.rows[0] );
 
-                //les infos du user persistent 
+                //les infos du user persistent une fois loggé
                 request.session.userInfo = data.rows[0];
-                response.redirect(`/user/${data.rows[0].ids}`);
+                console.log( 'ma request', request.session.userInfo);
+                response.redirect(`/user/${data.rows[0].id}`);
+
+                //Si l'utilisateur existe
+                if (data.rows.length > 0) {
+                    console.log('L\'utilisateur existe');
+                
+                    //Si il existe pas alors :
+                } else{
+                    console.log('Utilisateur introuvable');
+                
+                }
                 
             }
         });
+
         
-        
 
+    },
 
-
-    }
     
 
 

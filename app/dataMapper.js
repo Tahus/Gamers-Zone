@@ -13,7 +13,7 @@ const dataMapper = {
             const queryArticlesHome = 'SELECT * FROM articles ORDER BY created_at LIMIT 3  ;';
             //await veut dire : attends que ma requete soit finie avant de passer à la suite
             const {rows} =  await client.query(queryArticlesHome);
-            console.log(rows);
+           
             return rows ; 
             
             // en cas d'erreur le catch capture et retourne l'erreur
@@ -100,8 +100,6 @@ const dataMapper = {
         //En requête préparée, SQL s'attends à avoir un tableau dans lesquel rechercher dans l'ordre les données qui correspondent à $1,$2, etc..
         client.query(queryUserByInfosLogs, [userLogs.email, userLogs.password], callback);
     },
-
-
 
 
 };
