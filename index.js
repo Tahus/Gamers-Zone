@@ -6,13 +6,23 @@ dotenv.config();
 const express = require('express');
 
 
+//Je require methodOverride
+const methodOverride = require('method-override');
+
+ 
+
 //J'execute express 
 const app = express();
+
+
 
 //J'ajoute le middleware d'express (body parser) afin de pouvoir utiliser req.body
 //ce MDW récupère les infos du POST, il le stock dans un objet(request)
 //Puis il le passe en paramètre (request.body) à la methode en question
 app.use(express.urlencoded({extended: true}));
+
+//Pour pouvoir utiliser la méthode PUT
+app.use(methodOverride());
 
 // utilise le moteur de rendu EJS
 app.set('view engine', 'ejs');
@@ -26,12 +36,18 @@ app.use(express.static('./app/public'));
 //J'importe mon router 
 const router = require('./app/router');
 
+const cookieParser = require('cookie-parser');
+
+app.use(cookieParser());
+
+
 
 //on met en place le système de session après l'installation du package express-session
 const session = require('express-session');
+ 
 app.use(session(
     {
-        secret: process.env.SESSION_SECRET,
+        secret: process.env.SESSION_SECRET, //utilisé pour encoder le cookies
         resave: true,
         saveUninitialized: true
     }
@@ -39,13 +55,18 @@ app.use(session(
 
 app.use((request, response, next) => {
     //si la propriété userInfo de la session vaut undefined, on la crée
-    if (!request.session.userInfo) {
-        request.session.userInfo = [];
-        
-        // sinon elle est déjà crée on y met le resultat dans locals.userInfo  
-    } else {
-        response.locals.userInfo = request.session.userInfo;
-    }
+    
+    if (!request.session.userInfo  ) {
+       
+        request.session.userInfo = false; 
+         
+    } 
+
+    
+    response.locals.userInfo = request.session.userInfo;
+    //cette methode est dans index.js, donc appelé pour TOUTES les requêtes
+    //donc j'aurais la valeur userInfo dans toutes les vues
+
     next();
 });
 
