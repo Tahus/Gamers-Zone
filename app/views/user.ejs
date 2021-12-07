@@ -1,14 +1,62 @@
 <%- include('./partial/header') %>
 
-<h1>BIENVENU DANS TON PROFIL EN ATTENDANT LA VERSION FINALE DE LA PAGE  ^^</h1>
-
-
 
     <% if (locals?.userInfo) { %>
-     <p>connecté(e) en tant que</p>
-     <b><%= locals?.userInfo.user_name %> </b>
-        <img src= <%=locals.userInfo.url_picture %> >
+      
+        <form action="/user/<%= locals.userInfo.id %>"  method="POST">
 
+        <div class="form-profil">
+            
+
+            <h1 class = "profil-title">Mon Profil</h1>  
+
+            <div class="form-body">
+              
+              <div class="form-user">
+                <label for="avatar">Avatare:</label>
+                <img class="profil-img" src= "<%=locals.userInfo.url_picture%>">
+                <input type="url" name="avatar" id="avatar" accept="image/png, image/jpeg" >
+              </div>
+        
+              <div class="form-user">
+                <label for="name">Pseudo :</label>
+                <input class="profil-input" type="text" name="name" id="name" value = "<%= locals.userInfo.user_name %> " placeholder="Pseudo" required>
+              </div>
+          
+              <div class="form-user">
+                <label for="email">Adresse mail :</label>
+                <input type="email" name="email" id="email" value= "<%= locals.userInfo.email %> " placeholder="E-mail" required>
+              </div>
+          
+              <div class="form-user">
+                <label for="birth_date">Date de naissance :</label>
+                <input type="date" name="birth_date" id="birthdate" value= "<%= locals.userInfo.birth_date %> " placeholder="JJ/MM/AAAA" required>
+              </div>
+                
+              <div class="form-user">
+                <label for="password">Nouveau Mot De Passe :</label>
+                <input type="password" name="password" id="password" placeholder="Mot De Passe" minlength="4" required >
+              </div>
+
+              <div class="form-user">
+                <label for="password">Retaper Mot De Passe :</label>
+                <input type="password" name="password" id="password-double" placeholder="Mot De Passe" minlength="4" required >
+              </div>
+
+              <div class="form-user">
+                <input type="submit" value="Valider" class="button-validate">
+              </div>
+
+              <div class="form-user">
+                <input type="submit" value="Supprimer" class="button-delete">
+              </div>
+          
+            
+        
+            </div>  
+          </div>
+        
+      </form>
     
     <% } else { %>
         <p>Pas d'infos trouvès !</p>

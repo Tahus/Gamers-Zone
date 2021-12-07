@@ -6,7 +6,7 @@ const authController= require('./controllers/authController');
 const articlesController= require('./controllers/articlesController');
 const categoriesController= require('./controllers/categoriesController');
 const contactController = require('./controllers/contactController');
-const signupController= require('./controllers/signupController');
+const userController= require('./controllers/userController');
 
 
 
@@ -33,14 +33,24 @@ router.get('/Login', authController.getLoginForm);
 router.post('/Login', authController.loginUser );
 
 //route pour la page d'inscription 
-router.get('/signup', signupController.getSignupUser);
-router.post('/addUser', signupController.addUser);
+router.get('/signup', userController.getSignupUser);
+router.post('/addUser', userController.addUser);
 
 
 //route pour la page de profil connectés
 
-router.get('/user/:id', signupController.getProfilPage);
+router.get('/user/:id', userController.getProfilPage);
 
+//route pour modifier le profil utilisateur
+router.post('/user/:id', userController.updateProfilPage);
+
+
+
+router.get('/logOut', (request, response) =>{
+
+    delete request.session.userInfo;
+    response.redirect('/');
+});
 
 
 

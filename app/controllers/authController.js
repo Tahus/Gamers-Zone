@@ -27,13 +27,16 @@ const authController = {
             if (error) {
                 
                 console.log('Attention !', error);
-            } else {
+            } 
+            else {
                 console.log('resultat du data ', data.rows[0] );
 
                 //les infos du user persistent une fois loggé
+                //request.session correspond à mon objet associé à mon ID , stocké côté serveur
                 request.session.userInfo = data.rows[0];
                 console.log( 'ma request', request.session.userInfo);
-                response.redirect(`/user/${data.rows.id}`);
+                //Une fois connecté, l'user est automatiquement redirigé vers sa page de profil
+                response.redirect('/');
 
                 //Si l'utilisateur existe
                 if (data.rows.length > 0) {
@@ -50,7 +53,7 @@ const authController = {
 
         
 
-    },
+    }
 
     
 

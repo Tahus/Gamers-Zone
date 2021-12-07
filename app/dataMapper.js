@@ -90,7 +90,7 @@ const dataMapper = {
             text : (`INSERT INTO users ("user_name", "email", "birth_date", "url_picture", "password")
                     VALUES ( $1, $2, $3, $4, $5) RETURNING id;`),
             
-            values : [userInfo.name, userInfo.email, userInfo.birth_date, userInfo.avatar, userInfo.password]
+            values : [userInfo.name, userInfo.email, userInfo.birth_date, userInfo.image, userInfo.password]
 
         };
 
@@ -127,6 +127,37 @@ const dataMapper = {
         client.query(queryUserByInfosLogs, callback);
     },
 
+    //Je mets à jours touts les champs du formulaire(body)
+    //updateUserByUserIdRequest : (userInfo, id,  callback) => {
+
+
+       // const userId= parseInt((id), 10);
+        //const queryUserById = {
+         //   text : `UPDATE users SET user_name = $1, email = $2, password = $3, birth_date = $4, url_picture = $5 WHERE  id = $6;`,
+
+           // values : [userInfo.name, userInfo.email, userInfo.password, userInfo.birth_date, userInfo.image, id]
+
+        //};
+
+        
+
+       
+       // client.query(queryUserById, callback);
+
+   // },
+
+    testUpdateByRequest : (userInfo, id,  callback) => {
+        const usersId= parseInt((id), 10);
+        const queryUserById = {
+            text : `UPDATE users SET user_name, = $1 email = $2, password = $3, birth_date = $4, url_picture = $5 WHERE  id = $6;`,
+
+            values : [userInfo.name, userInfo.email, userInfo.password, userInfo.birth_date, userInfo.image, id]
+
+        };
+
+       
+        client.query(queryUserById, callback);
+    }
 
 };
 
