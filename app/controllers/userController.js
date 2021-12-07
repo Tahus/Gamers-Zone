@@ -91,7 +91,7 @@ const userController = {
 
         const id = parseInt((request.params.id,10));
 
-        console.log('params', typeof id);
+        
 
         const userInfo= request.body;
 

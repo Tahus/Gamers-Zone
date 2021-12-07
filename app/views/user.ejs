@@ -15,7 +15,7 @@
               <div class="form-user">
                 <label for="avatar">Avatare:</label>
                 <img class="profil-img" src= "<%=locals.userInfo.url_picture%>">
-                <input type="url" name="avatar" id="avatar" accept="image/png, image/jpeg" >
+                <input type="text" name="avatar" id="avatar" value= "<%=locals.userInfo.url_picture%>" accept="image/png, image/jpeg"  required>
               </div>
         
               <div class="form-user">

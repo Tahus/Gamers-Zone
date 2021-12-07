@@ -145,8 +145,7 @@ const dataMapper = {
        // client.query(queryUserById, callback);
 
    // },
-
-    testUpdateByRequest : (userInfo, id,  callback) => {
+   updateUserByUserIdRequest : (userInfo, id,  callback) => {
         const usersId= parseInt((id), 10);
         const queryUserById = {
             text : `UPDATE users SET user_name, = $1 email = $2, password = $3, birth_date = $4, url_picture = $5 WHERE  id = $6;`,
