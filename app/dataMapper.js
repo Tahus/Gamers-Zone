@@ -145,10 +145,10 @@ const dataMapper = {
        // client.query(queryUserById, callback);
 
    // },
-   updateUserByUserIdRequest : (userInfo, id,  callback) => {
+   updateUserByUserIdRequest : (userInfo, id, callback) => {
         const usersId= parseInt((id), 10);
         const queryUserById = {
-            text : `UPDATE users SET user_name, = $1 email = $2, password = $3, birth_date = $4, url_picture = $5 WHERE  id = $6;`,
+            text : `UPDATE users SET user_name = $1, email = $2, password = $3, birth_date = $4, url_picture = $5 WHERE  id = $6;`,
 
             values : [userInfo.name, userInfo.email, userInfo.password, userInfo.birth_date, userInfo.image, id]
 
