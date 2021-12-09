@@ -15,7 +15,7 @@
               <div class="form-user">
                 <label for="avatar">Avatare:</label>
                 <img class="profil-img" src= "<%=locals.userInfo.url_picture%>">
-                <input type="text" name="avatar" id="avatar" value= "<%=locals.userInfo.url_picture%>" accept="image/png, image/jpeg"  required>
+                <input type="text" name="avatar" id="avatar-url" value= "<%=locals.userInfo.url_picture%>" accept="image/png, image/jpeg"  required>
               </div>
         
               <div class="form-user">
@@ -30,7 +30,7 @@
           
               <div class="form-user">
                 <label for="birth_date">Date de naissance :</label>
-                <input type="date" name="birth_date" id="birthdate" value= "<%= locals.userInfo.birth_date %> " placeholder="JJ/MM/AAAA" required>
+                <input type="text" name="birth_date" id="birthdate" value= "<%= locals.userInfo.birth_date %>"  placeholder="JJ/MM/AAAA" required>
               </div>
                 
               <div class="form-user">

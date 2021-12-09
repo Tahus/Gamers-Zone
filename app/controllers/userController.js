@@ -88,33 +88,26 @@ const userController = {
 
 
     updateProfilPage : (request, response) => {
-
-        const id = parseInt((request.params.id,10));
-
-        
-
+        const id = parseInt(request.params.id,10);
         const userInfo= request.body;
-
         //Je verifie si les deux mots de passes modifiés correspondent
         if (userInfo.password === userInfo.repeat_password) {
-
             //alors j'accède à ma requete du dataMapper$
             dataMapper.updateUserByUserIdRequest(userInfo, id, (error, data) => {
                 if (error) {
-                    console.log('Attention erreur!', error.details);
+                    console.log('Attention erreur!', error);
                     
                 } else {
                     console.log('les datas sont OK', data); 
                     request.session.userInfo = data.rows[0];
-
-                    response.redirect (`/user/${data.rows.id}`);
+                    response.redirect (`/user/${data.rows[0].id}`);
                 
                 }
             });
-            
-            
         }
     }
+
+       
         
     
 
