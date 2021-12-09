@@ -127,37 +127,19 @@ const dataMapper = {
         client.query(queryUserByInfosLogs, callback);
     },
 
-    //Je mets à jours touts les champs du formulaire(body)
-    //updateUserByUserIdRequest : (userInfo, id,  callback) => {
-
-
-       // const userId= parseInt((id), 10);
-        //const queryUserById = {
-         //   text : `UPDATE users SET user_name = $1, email = $2, password = $3, birth_date = $4, url_picture = $5 WHERE  id = $6;`,
-
-           // values : [userInfo.name, userInfo.email, userInfo.password, userInfo.birth_date, userInfo.image, id]
-
-        //};
-
-        
-
-       
-       // client.query(queryUserById, callback);
-
-   // },
+    
+   //Je mets à jours touts les champs du formulaire(body)
    updateUserByUserIdRequest : (userInfo, id, callback) => {
-        const usersId= parseInt((id), 10);
-        const queryUserById = {
-            text : `UPDATE users SET user_name = $1, email = $2, password = $3, birth_date = $4, url_picture = $5 WHERE  id = $6;`,
+        
+    const queryUserById = {
 
-            values : [userInfo.name, userInfo.email, userInfo.password, userInfo.birth_date, userInfo.image, id]
+        text : `UPDATE users SET user_name = $1, email = $2, password = $3, birth_date = $4, url_picture = $5 WHERE  id = $6 RETURNING *;`,
 
-        };
-
-       
-        client.query(queryUserById, callback);
-    }
-
+        //Attention, il faut récuperer les valeurs qui se trouvent dans "name" côté input EJS pour userInfo
+        values : [userInfo.name, userInfo.email, userInfo.password, userInfo.birth_date, userInfo.avatar, id]
+    };
+    client.query(queryUserById, callback);
+}
 };
 
  
