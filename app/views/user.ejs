@@ -13,14 +13,14 @@
             <div class="form-body">
               
               <div class="form-user">
-                <label for="avatar">Avatare:</label>
+                <label for="avatar">Avatar:</label>
                 <img class="profil-img" src= "<%=locals.userInfo.url_picture%>">
                 <input type="text" name="avatar" id="avatar-url" value= "<%=locals.userInfo.url_picture%>" accept="image/png, image/jpeg"  required>
               </div>
         
               <div class="form-user">
                 <label for="name">Pseudo :</label>
-                <input class="profil-input" type="text" name="name" id="name" value = "<%= locals.userInfo.user_name %> " placeholder="Pseudo" required>
+                <input class="profil-input" type="text" name="name" id="name" value = "<%=locals.userInfo.user_name %> " placeholder="Pseudo" required>
               </div>
           
               <div class="form-user">
@@ -35,12 +35,12 @@
                 
               <div class="form-user">
                 <label for="password">Nouveau Mot De Passe :</label>
-                <input type="password" name="password" id="password" placeholder="Mot De Passe" minlength="4" required >
+                <input type="password" name="password" id="password" placeholder="Mot De Passe" minlength="4"  >
               </div>
 
               <div class="form-user">
                 <label for="password">Retaper Mot De Passe :</label>
-                <input type="password" name="repeat_password" id="repeat_password" placeholder="Mot De Passe" minlength="4" required >
+                <input type="password" name="repeat_password" id="repeat_password" placeholder="Mot De Passe" minlength="4" >
               </div>
 
               <div class="form-user">

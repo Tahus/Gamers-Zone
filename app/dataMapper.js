@@ -1,37 +1,22 @@
+/* eslint-disable quotes */
 
 const client = require('./database');
 
 const dataMapper = {
 
-    //Je récupère les 3 derniers articles ajoutès pour les afficher dans la page d'accueil
-    getHomesArticlesRequest : async () => {
-        //Je récupère que 3 enregistrements
-         
-        // il execute le code
-        try {
-            
-            const queryArticlesHome = 'SELECT * FROM articles ORDER BY created_at LIMIT 3  ;';
-            //await veut dire : attends que ma requete soit finie avant de passer à la suite
-            const {rows} =  await client.query(queryArticlesHome);
-           
-            return rows ; 
-            
-            // en cas d'erreur le catch capture et retourne l'erreur
-        } catch (error) {
-            if (error.detail) {
-                throw new Error(error.detail);
-            }
-            throw error;
-        
-        }
 
+    //Je récupère les 3 derniers articles ajoutès pour les afficher dans la page d'accueil
+    getHomesArticlesRequest : (callback) => {
+        // eslint-disable-next-line quotes
+        const queryArticlesHome = `SELECT * FROM articles ORDER BY created_at LIMIT 3`;
+        client.query(queryArticlesHome, callback);  
     },
 
 
     //Je récupère touts mes articles
     getArticlesPageRequest: (callback) => {
         //Je définit ma requete SQL
-        const queryArticles = 'SELECT * FROM articles;';
+        const queryArticles = `SELECT * FROM articles;`;
         client.query(queryArticles, callback);     
     },
 
@@ -52,7 +37,7 @@ const dataMapper = {
     //Je récupère la liste des catégories
     getCategoriesPageRequest : (callback) => {
 
-        const queryCategories = 'SELECT * FROM categories;';
+        const queryCategories = `SELECT * FROM categories;`;
 
         client.query(queryCategories,callback);
     },
@@ -90,7 +75,7 @@ const dataMapper = {
             text : (`INSERT INTO users ("user_name", "email", "birth_date", "url_picture", "password")
                     VALUES ( $1, $2, $3, $4, $5) RETURNING id;`),
             
-            values : [userInfo.name, userInfo.email, userInfo.birth_date, userInfo.image, userInfo.password]
+            values : [userInfo.name, userInfo.email, userInfo.birth_date, userInfo.avatar, userInfo.password]
 
         };
 
@@ -104,7 +89,7 @@ const dataMapper = {
         const queryOneUser = {
 
             text : `SELECT * FROM users WHERE id=$1;`,
-            values : [userId],
+            values : [userId]
 
         };
         
@@ -128,18 +113,18 @@ const dataMapper = {
     },
 
     
-   //Je mets à jours touts les champs du formulaire(body)
-   updateUserByUserIdRequest : (userInfo, id, callback) => {
+    //Je mets à jours touts les champs du formulaire(body)
+    updateUserByUserIdRequest : (userInfo, id, callback) => {
         
-    const queryUserById = {
+        const queryUserById = {
 
-        text : `UPDATE users SET user_name = $1, email = $2, password = $3, birth_date = $4, url_picture = $5 WHERE  id = $6 RETURNING *;`,
+            text : `UPDATE users SET user_name = $1, email = $2, password = $3, birth_date = $4, url_picture = $5 WHERE  id = $6 RETURNING *;`,
 
-        //Attention, il faut récuperer les valeurs qui se trouvent dans "name" côté input EJS pour userInfo
-        values : [userInfo.name, userInfo.email, userInfo.password, userInfo.birth_date, userInfo.avatar, id]
-    };
-    client.query(queryUserById, callback);
-}
+            //Attention, il faut récuperer les valeurs qui se trouvent dans "name" côté input EJS pour userInfo
+            values : [userInfo.name, userInfo.email, userInfo.password, userInfo.birth_date, userInfo.avatar, id]
+        };
+        client.query(queryUserById, callback);
+    }
 };
 
  
