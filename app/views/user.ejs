@@ -9,12 +9,12 @@
             
 
             <h1 class = "profil-title">Mon Profil</h1>  
-
+            
             <div class="form-body">
+              <img class="profil-img" src= "<%=locals.userInfo.url_picture%>">
               
               <div class="form-user">
-                <label for="avatar">Avatar:</label>
-                <img class="profil-img" src= "<%=locals.userInfo.url_picture%>">
+                <label for="avatar">Avatar :</label>
                 <input type="text" name="avatar" id="avatar-url" value= "<%=locals.userInfo.url_picture%>" accept="image/png, image/jpeg"  required>
               </div>
         
@@ -32,25 +32,25 @@
                 <label for="birth_date">Date de naissance :</label>
                 <input type="text" name="birth_date" id="birthdate" value= "<%= locals.userInfo.birth_date %>"  placeholder="JJ/MM/AAAA" required>
               </div>
-                
-              <div class="form-user">
-                <label for="password">Nouveau Mot De Passe :</label>
-                <input type="password" name="password" id="password" placeholder="Mot De Passe" minlength="4"  >
-              </div>
+              <!-- Changement de mot de passe -->
+              <fieldset>
+                <legend>Changer le mot de passe</legend>
+                <div class="form-user">
+                  <label for="password">Nouveau Mot De Passe :</label>
+                  <input type="password" name="password" id="password" placeholder="Mot De Passe" minlength="4"  >
+                </div>
+  
+                <div class="form-user">
+                  <label for="password">Retaper Mot De Passe :</label>
+                  <input type="password" name="repeat_password" id="repeat_password" placeholder="Mot De Passe" minlength="4" >
+                </div>
 
-              <div class="form-user">
-                <label for="password">Retaper Mot De Passe :</label>
-                <input type="password" name="repeat_password" id="repeat_password" placeholder="Mot De Passe" minlength="4" >
-              </div>
+              </fieldset>
 
-              <div class="form-user">
+              <div class="form-submit">
                 <input type="submit" value="Valider" class="button-validate">
-              </div>
-
-              <div class="form-user">
                 <input type="submit" value="Supprimer" class="button-delete">
               </div>
-          
             
         
             </div>  
@@ -59,7 +59,7 @@
       </form>
     
     <% } else { %>
-        <p>Pas d'infos trouvès !</p>
+        <p>Pas d'infos trouvées !</p>
         <% }%>
 
     
