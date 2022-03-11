@@ -28,6 +28,7 @@
 - [ ] Mettre en place la methode Validate de Joi .
 - [ ] Mettre en place Bcrypt pour hacher le password.
 - [x] Envoyer la data dans la methode du dataMapper.
+- [ ] JWT Pour securiser la connexion .
 
 server---->client
 

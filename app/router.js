@@ -45,7 +45,7 @@ router.get('/user/:id', userController.getProfilPage);
 router.post('/user/:id', userController.updateProfilPage);
 
 
-
+//route de déconnexion d'un user
 router.get('/logOut', (request, response) =>{
 
     delete request.session.userInfo;

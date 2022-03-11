@@ -66,3 +66,17 @@
 
 
 <%- include('./partial/footer') %>
+
+
+<%# Creation d'évenement pour obliger l'user à modifier les deux champs une fois 
+qu'il a cliqué sur le champs de mot de passe #%>
+<script>
+  const newPassword = document.querySelector('#password');
+  const confirmPassword = document.querySelector('#repeat_password');
+
+  newPassword.addEventListener('click', () => {
+    console.log('cliqué!');
+    newPassword.setAttribute('required', '');
+    confirmPassword.setAttribute('required', '');
+  });
+</script>

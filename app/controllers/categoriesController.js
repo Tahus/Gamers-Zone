@@ -5,7 +5,7 @@ const categoriesController = {
     getCategoriesList : (request, response) => {
 
         dataMapper.getCategoriesPageRequest((error, data) => {
-            //l'execution se fera une fois que la BDD aura répondu a la requête
+            //l'execution se fera une fois que la BDD aura répondu à la requête
             if (error){
                 console.log(error);
             } else {
@@ -27,7 +27,7 @@ const categoriesController = {
         dataMapper.getArticlesByCategoryIdRequest (categoryId,(errorCategoryArticles, dataCategoryArticles) => {
 
             console.log('---> #03');
-            //l'execution se fera une fois que la BDD aura répondu a la requête
+            //l'execution se fera une fois que la BDD aura répondu à la requête
             if (errorCategoryArticles){
 
                 console.log('---> #03 --> ERROR');
@@ -40,9 +40,10 @@ const categoriesController = {
                 const articles = dataCategoryArticles.rows;
                 console.log('category', articles);
 
+
+
                 //J'ai besoin du titre de ma catégorie en question
                 //Je refais une query SQL
-                
                 dataMapper.getOneCategoryTitleRequest (categoryId, (errorCategory, dataCategoryTitle) => {
                     
                     console.log('---> #04');

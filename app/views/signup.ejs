@@ -6,6 +6,7 @@
   
       <div class="form-user">
         <label for="avatar">*Image de profil:</label>
+        <img src="" class="img-user">
         <input type="file" name="avatar" id="avatar" accept="image/png, image/jpeg" required>
       </div>
 
@@ -47,6 +48,40 @@
     
   </div>
 
+
+  
+  <script>
+     const input = document.querySelector('#avatar');
+     const imgUser = document.querySelector('.img-user');
+     
+     const imageSignupUser = () => {
+        
+        const file = input.files[0];
+        const data = new FormData();
+        data.append("file", file);
+        data.append("upload_preset", "moql4kpg");//process.env.CLOUDINARY_UPLOAD_PRESET
+        data.append("cloud_name","davhusrlb");//process.env.CLOUDINARY_CLOUD_NAME
+        if (file) {
+            fetch("https://api.cloudinary.com/v1_1/davhusrlb/upload", 
+                {
+                    method: "POST",
+                    body: data
+                }
+            )
+            .then(response => response.json())
+            .then(data => {
+              imgUser.setAttribute("src",data.url);
+              input.value = data.url;
+            })
+            .catch(err => {
+                console.error('error image', err);
+            });
+        }
+    };
+    
+    avatar.addEventListener ('change',imageSignupUser);
+
+  </script>
 
 
 <%- include('./partial/footer') %>
