@@ -4,11 +4,6 @@
     <form action="/addUser" method="post">
       <h1>Inscription</h1>
   
-      <div class="form-user">
-        <label for="avatar">*Image de profil:</label>
-        <img src="" class="img-user">
-        <input type="file" name="avatar" id="avatar" accept="image/png, image/jpeg" required>
-      </div>
 
       <div class="form-user">
         <label for="name">*Pseudo :</label>
@@ -51,14 +46,19 @@
 
   
   <script>
-     const input = document.querySelector('#avatar');
-     const imgUser = document.querySelector('.img-user');
+    //Je récupère mes éléments html 
+     const input = document.querySelector('#img-user');
+
+     const imgUser = document.querySelector('.avatar');
      
      const imageSignupUser = () => {
-        
+        //avec.files je récupère le fichier déposé par l'utilisateur
         const file = input.files[0];
+
         const data = new FormData();
+
         data.append("file", file);
+
         data.append("upload_preset", "moql4kpg");//process.env.CLOUDINARY_UPLOAD_PRESET
         data.append("cloud_name","davhusrlb");//process.env.CLOUDINARY_CLOUD_NAME
         if (file) {
@@ -68,8 +68,10 @@
                     body: data
                 }
             )
+            //J'utiliser la méthode json de response pour avoir les données au format json
             .then(response => response.json())
             .then(data => {
+              //data.url c'est la réponse que j'obtiens de l'API
               imgUser.setAttribute("src",data.url);
               input.value = data.url;
             })

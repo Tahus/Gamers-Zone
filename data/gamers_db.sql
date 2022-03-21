@@ -38,7 +38,6 @@ CREATE TABLE "users" (
   "email" TEXT NOT NULL UNIQUE,
   "password" TEXT NOT NULL,
   "birth_date" TEXT NOT NULL,
-  "url_picture" TEXT NOT NULL,
   "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   "updated_at" TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );

@@ -1,0 +1,40 @@
+<%- include('./partial/header') %>
+
+<% if (locals?.userInfo) { %>
+      
+    <form action="/deleteUser/<%= locals.userInfo.id %>"  method="POST">
+    <div class="form-delete">
+        
+        <h1 class = "profil-delete">Supprimer mon profil</h1>  
+        <div class="form-body-delete">
+
+          <div class="form-delete">
+             <label for="password">Taper mon Mot De Passe :</label>
+             <input type="password" name="password" id="password" placeholder="Mot De Passe" minlength="4" >
+          </div>
+          
+          <div class="form-delet">
+             <label for="password">Confirmer mon Mot De Passe :</label>
+             <input type="password" name="repeat_password" id="repeat_password" placeholder="Mot De Passe" minlength="4" required >
+          </div>
+          
+          <div class="form-delete">
+             <input type="submit" value="Supprimer Mon Profil" class="button-delete">
+          </div>
+      
+        
+    
+        </div>  
+      </div>
+    
+  </form>
+
+  
+
+<% } else { %>
+            <p>Impossible de supprimer le profil ! Tentes autre chose</p>
+        <% }%>
+
+
+
+<%- include('./partial/footer') %>

@@ -52,6 +52,8 @@ router.get('/logOut', (request, response) =>{
     response.redirect('/');
 });
 
+//route pour supprimer deffinitivement un profil utilisateur
+router.post('/deleteUser/:id', userController.deleteUserPage);
 
 
 

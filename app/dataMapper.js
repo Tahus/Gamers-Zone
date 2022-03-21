@@ -72,10 +72,10 @@ const dataMapper = {
         
         const queryAddUser = { 
 
-            text : (`INSERT INTO users ("user_name", "email", "birth_date", "url_picture", "password")
-                    VALUES ( $1, $2, $3, $4, $5) RETURNING id;`),
+            text : (`INSERT INTO users ("user_name", "email", "birth_date", "password")
+                    VALUES ( $1, $2, $3, $4) RETURNING id;`),
             
-            values : [userInfo.name, userInfo.email, userInfo.birth_date, userInfo.avatar, userInfo.password]
+            values : [userInfo.name, userInfo.email, userInfo.birth_date, userInfo.password]
 
         };
 
@@ -118,13 +118,25 @@ const dataMapper = {
         
         const queryUserById = {
 
-            text : `UPDATE users SET user_name = $1, email = $2, password = $3, birth_date = $4, url_picture = $5 WHERE  id = $6 RETURNING *;`,
+            text : `UPDATE users SET user_name = $1, email = $2, password = $3, birth_date = $4, WHERE  id = $5 RETURNING *;`,
 
             //Attention, il faut récuperer les valeurs qui se trouvent dans "name" côté input EJS pour userInfo
-            values : [userInfo.name, userInfo.email, userInfo.password, userInfo.birth_date, userInfo.avatar, id]
+            values : [userInfo.name, userInfo.email, userInfo.password, userInfo.birth_date, id]
         };
         client.query(queryUserById, callback);
+    },
+
+    deleteUserByIdRequest : (userId, callback) => {
+
+        const queryDeleteById = {
+            text : `DELETE * FROM users WHERE id=$1;`,
+
+            values : [userId]
+        };
+
+        client.query(queryDeleteById, callback);
     }
+
 };
 
  

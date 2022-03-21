@@ -12,12 +12,7 @@
 
             <div class="form-body">
               
-              <div class="form-user">
-                <label for="avatar">Avatar:</label>
-                <img class="profil-img" src= "<%=locals.userInfo.url_picture%>">
-                <input type="text" name="avatar" id="avatar-url" value= "<%=locals.userInfo.url_picture%>" accept="image/png, image/jpeg"  required>
-              </div>
-        
+              
               <div class="form-user">
                 <label for="name">Pseudo :</label>
                 <input class="profil-input" type="text" name="name" id="name" value = "<%=locals.userInfo.user_name %> " placeholder="Pseudo" required>
@@ -48,8 +43,7 @@
               </div>
 
               <div class="form-user">
-                <input type="submit" value="Supprimer" class="button-delete">
-              </div>
+                <input type="submit" value="Supprimer" class="button-delete" href="/deleteUser/<%= locals.userInfo.id%>">              </div>
           
             
         
@@ -59,7 +53,7 @@
       </form>
     
     <% } else { %>
-        <p>Pas d'infos trouvès !</p>
+        <p>Pas d'infos trouvès ! tentes autre chose</p>
         <% }%>
 
     
