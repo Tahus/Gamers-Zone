@@ -128,10 +128,10 @@ const dataMapper = {
 
     deleteUserByIdRequest : (userId, callback) => {
 
-        console.log("dans le datamapper delete de l'id: ", userId);
+        console.log("********* dans le datamapper delete de l'id: ", userId);
 
         const queryDeleteById = {
-            text : `DELETE * FROM "users" WHERE id=$1;`,
+            text : `DELETE FROM "users" WHERE id=$1;`,
 
             values : [userId]
         };
