@@ -43,17 +43,18 @@
               </div>
 
               <div class="form-user">
-                <input type="submit" value="Supprimer" class="button-delete" href="/deleteUser/<%= locals.userInfo.id%>">              </div>
-          
-            
-        
+                <a href="/deleteUser/confirm">Supprimer</a>
+              </div>
+              
+              
+              
             </div>  
           </div>
-        
+          
       </form>
     
     <% } else { %>
-        <p>Pas d'infos trouvès ! tentes autre chose</p>
+        <p>Pas d'infos trouvées ! tentes autre chose</p>
         <% }%>
 
     

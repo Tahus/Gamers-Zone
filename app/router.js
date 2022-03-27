@@ -52,7 +52,9 @@ router.get('/logOut', (request, response) =>{
     response.redirect('/');
 });
 
-//route pour supprimer deffinitivement un profil utilisateur
+// route pour demander la confirmation avant la supression d'un compte utilisateur
+router.get('/deleteUser/confirm', userController.confirmDelete);
+//route pour supprimer definitivement un profil utilisateur
 router.post('/deleteUser/:id', userController.deleteUserPage);
 
 

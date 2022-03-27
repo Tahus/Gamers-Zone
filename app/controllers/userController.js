@@ -108,6 +108,10 @@ const userController = {
         }
     },
 
+    confirmDelete : (request, response) => {
+        response.render('deleteUser');
+    },
+
        
     deleteUserPage : (request, response) => {
 

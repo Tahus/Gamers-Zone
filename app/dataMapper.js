@@ -129,7 +129,7 @@ const dataMapper = {
     deleteUserByIdRequest : (userId, callback) => {
 
         const queryDeleteById = {
-            text : `DELETE * FROM users WHERE id=$1;`,
+            text : `DELETE * FROM "users" WHERE id=$1;`,
 
             values : [userId]
         };
