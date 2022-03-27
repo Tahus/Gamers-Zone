@@ -118,9 +118,12 @@ const userController = {
         const id = parseInt(request.params.id,10);
         const userInfo= request.body;
 
-        
+        console.log("****** Controller deleteUserPage : voici les infos récupérées");
+        console.log(id, userInfo);
 
             if (userInfo.password === userInfo.repeat_password) {
+
+                console.log("les 2 mots de passe correspondent, on envoie au datamapper");
 
                 dataMapper.deleteUserByIdRequest(id, (error, data) => {
                     if (error) {
