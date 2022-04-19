@@ -5,6 +5,10 @@ dotenv.config();
 //Je require express
 const express = require('express');
 
+//Je require mon middleware (pour empecher les attaques XSS)
+const bodySanitizer = require('./app/middlewares/body-sanitizer');
+
+
 
 //Je require methodOverride
 const methodOverride = require('method-override');
@@ -21,6 +25,8 @@ const app = express();
 //Puis il le passe en paramètre (request.body) à la methode en question
 app.use(express.urlencoded({extended: true}));
 
+app.use(bodySanitizer);
+
 //Pour pouvoir utiliser la méthode PUT
 app.use(methodOverride());
 
@@ -35,6 +41,8 @@ app.use(express.static('./app/public'));
 
 //J'importe mon router 
 const router = require('./app/router');
+
+
 
 const cookieParser = require('cookie-parser');
 
@@ -55,18 +63,12 @@ app.use(session(
 
 app.use((request, response, next) => {
     //si la propriété userInfo de la session vaut undefined, on la crée
-    
     if (!request.session.userInfo  ) {
-       
-        request.session.userInfo = false; 
-         
+        request.session.userInfo = false;     
     } 
-
-    
     response.locals.userInfo = request.session.userInfo;
     //cette methode est dans index.js, donc appelé pour TOUTES les requêtes
     //donc j'aurais la valeur userInfo dans toutes les vues
-
     next();
 });
 

@@ -1,152 +1,111 @@
-/* eslint-disable indent */
-
 const dataMapper = require('../dataMapper');
-
+const bcrypt = require('bcrypt');
 
 const userController = {
 
-    getSignupUser: (request, response) => {
-        response.render('signup');
-        
-        
-    },
-
-    //Inscription d'un nouvel utilisateur
-    addUser: (request, response) => {
-
-        // grâce au body parser (ajouté dans le fichier index.js),
-        //je vais pouvoir avoir accès à request.body, qui est un objet qui contient 
-        //toutes les infos de mon formulaire envoyé via POST(quand je clique sur le bouton).
-        const userInfo = request.body;
-        console.log( 'infos', userInfo);
-        
-        //Utiliser la methode validate de Joi
-                                    
-        dataMapper.addUserRequest(userInfo, (error, data) => {
-
-            if(error) {
-                console.log('error addUser !', error);
-
-            } else {
-
-
-                if (data.rows[0].id) { //équivalent à if (data !== undefined)
-
-                    //le paramètre contient bien des infos, on peut ajouter l'utilisateur en session
-                    console.log('Le nouvel utilisateur a été ajouté avec succés !');
-
-                    //et rediriger vers page du Login (requête GET sur l'url)
-                    response.redirect('/Login');
-                } else {
-                    //pas d'erreur SQL mais on n'a récupéré aucun enregistrement, on le signale au navigateur
-                    response.status(404).send(`User with id ${userInfo.id} not found`);
-                }
-
-                
-                
-
-                
-                console.log('mon user', userInfo);
-
-                
-            }
-        });
-
-       
-    },
-    
     //Methode pour acceder à la page utilisateur 
-    getProfilPage : (request, response) => {
-
-        
-        
+    getProfilPage : async (request, response) => {
         //Je récupère les infos de mon user via son ID
         // userleId => l'ID prèsent dans mon URL
-        const userId = Number(request.params.id);
-
-        dataMapper.getUserByIdRequest(userId, (error, data) => {
-
-            
-
-          if (error){
-             console.log(error);
-                
-          } else {
-
+        let userId = Number(request.params.id);
+        try {
+            let getUserId = await dataMapper.getUserById(userId);
+            if (getUserId.rows[0]){
                 //locals permet de faire le pont entre mon back et mon front(ejs) pour y envoyer mes données
-               request.session.userInfo = data.rows[0];
-               console.log('data avant update', data.rows[0]);
-               response.locals.userInfo = request.session.userInfo;
-               console.log('reponse locale', response.locals.userInfo);
-               response.render('user');
-              
-        }
-
-        }); 
-
+                // request.session.userInfo = getDataId.rows[0];
+                // console.log('data avant update', getDataId.rows[0]);
+                // response.locals.userInfo = request.session.userInfo;
+                // console.log('reponse locale', response.locals.userInfo);
+                response.render('user'); 
+            } else {
+                response.status(404).send(`User with id ${userInfo.id} not found`);
+            }
+        } catch (error) {
+             console.log("Error profil By Id >", error);
+        }   
     },
 
-
-    updateProfilPage : (request, response) => {
-        const id = parseInt(request.params.id,10);
-        const userInfo= request.body;
+    updateProfil : async (request, response) => {
         
-        //Je verifie si les deux mots de passes modifiés correspondent
-        if (userInfo.password === userInfo.repeat_password) {
-            //alors j'accède à ma requete du dataMapper
-            dataMapper.updateUserByUserIdRequest(userInfo, id, (error, data) => {
-                if (error) {
-                    console.log('Attention erreur!', error);
-                    
-                } else {
-                    console.log('les datas sont OK', data); 
-                    request.session.userInfo = data.rows[0];
-                    response.redirect (`/user/${data.rows[0].id}`);
-                
-                }
-            });
-        }
-    },
-
-    confirmDelete : (request, response) => {
-        response.render('deleteUser');
-    },
-
-       
-    deleteUserPage : (request, response) => {
-
         const id = parseInt(request.params.id,10);
         const userInfo= request.body;
+        try {
+            const hash = await bcrypt.hash (userInfo.password, bcrypt.genSaltSync(10));
+            userInfo.password = hash;
+            userInfo.repeat_password = hash;
 
-        console.log("****** Controller deleteUserPage : voici les infos récupérées");
-        console.log(id, userInfo);
-
+           
+            // console.log("Infos de USER modifiés et hashés ! ", userInfo);
+            const profilUpdate = await dataMapper.updateUser(userInfo, id);
             if (userInfo.password === userInfo.repeat_password) {
 
-                console.log("les 2 mots de passe correspondent, on envoie au datamapper");
-
-                dataMapper.deleteUserByIdRequest(id, (error, data) => {
-                    if (error) {
-                    console.log('Attention erreur de suppression user!', error);
-    
-                    } else {
-                        console.log('Profil supprimé !', data );
-                        response.redirect('/login');
+                const dataSession = request.session.userInfo = profilUpdate.rows[0];
+                    if (dataSession) {
+                        response.redirect (`/user/${profilUpdate.rows[0].id}`);
+                        console.log('les modif sont OK', profilUpdate); 
+                        console.log('ma modif user', userInfo);
+                        // console.log('Attention erreur!', error);
                         
+                    } else {
+                        
+                       console.log("Attention erreur lors de l'update!", error);
+                       
                     }
-                    
-                });
-    
-                }
+            }
+        } catch (error) {
+             console.log('prbleme dans mon update controller', error);
+        }
+    },
 
-       
-    }    
-    
 
-    
 
+
+
+
+
+
+    deleteUser : async (request, response) => {
+        
+    
+        try {
+                        
+            // 1) Récupérer le mot de passe NON HASSHE que rentre l'user depuis le front au moment de supprimer
+            const { password } = request.body
+
+            // 2) Récupérer le mot de passe HASHEE de ce user en base de donnée
+            console.log("l'id de mon user, en session", request.session.userInfo.id)
+            const user = await dataMapper.getUserById(request.session.userInfo.id);
+            const hashedPassword = user.rows[0].password;
+            console.log('contenu de password', password);
+            console.log('contenu de hashedPassword', hashedPassword);
+            
+            // 3) Comparer ces deux valeurs grace à l'outil .compare() de bcrypt
+            console.log('SANS COMPARE', password === hashedPassword);
+            const pwdValid = await bcrypt.compare(password, hashedPassword);
+            console.log('APRES COMPARE', pwdValid)
+            
+            // 4) Si la comparaison n'est pas valide, ne rien faire / ou redigriger
+            if (!pwdValid) {
+                return response.redirect('/deleteUser/confirm');
+            };
+
+            // 5) Si la comparaison est validé, effectuer en base de donnée une suppression de ce user
+            const deleteUser = await dataMapper.deleteUserById(request.session.userInfo.id);
+            console.log("delete Effectué !  =>", deleteUser);
+            response.redirect('/logout');
+
+            
+        } catch(error) {
+            console.log('catch delete probleme', error);
+            response.redirect('/deleteUser/confirm');
+        }
+        
+        
+    }, 
+    
+                                  
+                                                                          
 };
-
- 
-
+                                                                   
+                                        
 module.exports = userController;
