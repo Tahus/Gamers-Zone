@@ -155,10 +155,10 @@ de raisons de sauver la veuve et l''orphelin.', 'https://cdn.pixabay.com/photo/2
 
 --La table d'utilisateurs
 INSERT INTO "users" ("user_name","email","birth_date", "password" ) VALUES
-( 'Alfred', 'a.martins@gamer.com', '08/12/1988', '12345')
-('Gaara', 'g.chunins@gamer.com','12/09/2002', '12345')
-('Selena', 's.loranos@gamer.com','10/02/1999', '12345')
-('Valérie', 'v.prunes@gamer.com','13/07/2000', '12345');
+('Alfred','a.martins@gamer.com','08/12/1988','12345'),
+('Gaara','g.chunins@gamer.com','12/09/2002','12345'),
+('Selena','s.loranos@gamer.com','10/02/1999','12345'),
+('Valérie','v.prunes@gamer.com','13/07/2000','12345');
 
 
 COMMIT;

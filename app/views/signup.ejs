@@ -1,7 +1,7 @@
 <%- include('./partial/header') %>
 
 <div class="form-signup">
-    <form action="/addUser" method="post">
+    <form action="/signup" method="post">
       <h1>Inscription</h1>
   
 
@@ -43,47 +43,6 @@
     
   </div>
 
-
-  
-  <script>
-    //Je récupère mes éléments html 
-     const input = document.querySelector('#img-user');
-
-     const imgUser = document.querySelector('.avatar');
-     
-     const imageSignupUser = () => {
-        //avec.files je récupère le fichier déposé par l'utilisateur
-        const file = input.files[0];
-
-        const data = new FormData();
-
-        data.append("file", file);
-
-        data.append("upload_preset", "moql4kpg");//process.env.CLOUDINARY_UPLOAD_PRESET
-        data.append("cloud_name","davhusrlb");//process.env.CLOUDINARY_CLOUD_NAME
-        if (file) {
-            fetch("https://api.cloudinary.com/v1_1/davhusrlb/upload", 
-                {
-                    method: "POST",
-                    body: data
-                }
-            )
-            //J'utiliser la méthode json de response pour avoir les données au format json
-            .then(response => response.json())
-            .then(data => {
-              //data.url c'est la réponse que j'obtiens de l'API
-              imgUser.setAttribute("src",data.url);
-              input.value = data.url;
-            })
-            .catch(err => {
-                console.error('error image', err);
-            });
-        }
-    };
-    
-    avatar.addEventListener ('change',imageSignupUser);
-
-  </script>
 
 
 <%- include('./partial/footer') %>

@@ -5,57 +5,44 @@ const mainController = require('./controllers/mainController');
 const authController= require('./controllers/authController');
 const articlesController= require('./controllers/articlesController');
 const categoriesController= require('./controllers/categoriesController');
-const contactController = require('./controllers/contactController');
+// const contactController = require('./controllers/contactController');
 const userController= require('./controllers/userController');
-
-
-
-//je mets  en place mon routeur
 
 const router = express.Router();
 
-
+// // Livraison des pages/vues principales
 router.get('/', mainController.getHomePage);
-
-//Articles
-router.get('/articles', articlesController.getArticlesPage);
-router.get('/articles/:id', articlesController.getOneArticle);
-
-// Categories
-router.get('/categories', categoriesController.getCategoriesList);
-router.get('/categories/:id', categoriesController.getOneCategoryArticles);
-
-//route pour acceder à la page contact
-router.get('/contact', contactController.getContactPage);
-
-//Login
-router.get('/Login', authController.getLoginForm);
-router.post('/Login', authController.loginUser );
-
-//route pour la page d'inscription 
-router.get('/signup', userController.getSignupUser);
-router.post('/addUser', userController.addUser);
+router.get('/articles', mainController.getArticlesPage);
+router.get('/categories', mainController.getCategoriesPage);
+router.get('/contact', mainController.getContactPage);
+router.get('/signup', mainController.getSignUpPage);
+router.get('/login', mainController.getLoginPage);
 
 
-//route pour la page de profil connectés
-
+// // Livraison de la vue du profil
 router.get('/user/:id', userController.getProfilPage);
 
-//route pour modifier le profil utilisateur
-router.post('/user/:id', userController.updateProfilPage);
 
+// // // Livraison de la vue de suppression de profil
+router.get('/deleteUser/confirm', mainController.getDeletePage); 
+// // ce serait mieux /user/:id/delete
 
-//route de déconnexion d'un user
-router.get('/logOut', (request, response) =>{
+// // Login, Register et Deconnection
+router.post('/login', authController.signIn );
+router.post('/signup', authController.signUp);
+router.get('/logout', authController.logOut);
 
-    delete request.session.userInfo;
-    response.redirect('/');
-});
+// // Profil & user
+// //route pour modifier le profil utilisateur
+router.post('/user/:id', userController.updateProfil);
+// //route pour supprimer definitivement un profil utilisateur
+router.post('/deleteUser/:id', userController.deleteUser);
 
-//route pour supprimer deffinitivement un profil utilisateur
-router.post('/deleteUser/:id', userController.deleteUserPage);
+// // Articles
+router.get('/articles/:id', articlesController.getOneArticle);
 
-
+// // Categories
+router.get('/categories/:id', categoriesController.getOneCategoryArticles);
 
 
 module.exports = router;

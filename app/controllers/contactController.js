@@ -1,8 +1,5 @@
 const contactController = {
-    getContactPage : (request, response) => {
-        //Je rends la page articles
-        response.render('contact');
-    }
+    // ici sera le controller d'envoi effectif du message
 };
 
 
