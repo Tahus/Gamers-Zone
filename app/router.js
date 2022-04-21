@@ -5,7 +5,7 @@ const mainController = require('./controllers/mainController');
 const authController= require('./controllers/authController');
 const articlesController= require('./controllers/articlesController');
 const categoriesController= require('./controllers/categoriesController');
-const contactController = require('./controllers/contactController');
+// const contactController = require('./controllers/contactController');
 const userController= require('./controllers/userController');
 
 const router = express.Router();

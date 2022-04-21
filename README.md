@@ -36,4 +36,8 @@ En cas de message d'erreur, l'outils n'est pas installé ;)
 - puis lancer le serveur : `npm run start` ou `npm start`
 - ouvrir le navigateur en cliquant sur le lien qui s'affiche dans le terminal
 
+### Formulaire de contact 
+
+Le formulaire de contact à été mis en place de manière statique grâce à la plateforme [FormSubmit](https://formsubmit.co/). Il suffit de Connecter le formulaire de contact à leur point de terminaison de formulaire en indiquant l'adresse mail sur laquelle je souhaite recevoir le message de l'utilisateur et ils enverrons les soumissions par courriel. Aucun code Javascript ou autre n'est requis.
+
 2. Utiliser l'application dans le navigateur : enjoy !
