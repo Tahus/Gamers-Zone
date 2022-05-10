@@ -14,7 +14,10 @@
 
 
 .logo {
-   
+    width : 5em;
+    height : 5em;
+    padding-right: 2em;
+    padding-left: 1.375em;
 }
 
 .header__nav {
