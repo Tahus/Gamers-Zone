@@ -27,7 +27,8 @@
 .header__nav ul {
     display: flex;
     justify-content: space-between;
-    width: 100%;
+    width: 78%;
+    padding-left: 15em;
     
 }
 
@@ -40,4 +41,15 @@
     font-weight: bold;
     text-decoration: none;
     color: #ff7818;
+}
+
+@media screen and (max-device-width: 640px) {
+    .header {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: normal;
+    align-content: normal;
+    }
 }
