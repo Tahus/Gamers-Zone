@@ -1,9 +1,15 @@
 module.exports = {
-    content: [ './app/views/home.ejs',
-        './app/views/partial/'
-    ],
+
+    mode: 'jit',
+
+    content: ["./app/views/**/*.{ejs,js}"],
     theme: {
-        extend: {},
+        extend: {
+            gridTemplateColumns:{
+                //1 column 100px 1 column qui prend tout l'espace qui reste(fractional unit) et une column de 100px
+                "menu": "100px 1fr 100px"
+            }
+        },
     },
     plugins: [],
 };

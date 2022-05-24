@@ -16,6 +16,7 @@ En cas de message d'erreur, l'outils n'est pas installé ;)
 - [NodeJS](https://nodejs.org/en/download/) (v12 ou supérieure)
 - [PostgreSQL](https://www.postgresql.org/download/) (v12 ou supérieure)
 - Git 
+-Tailwind CSS (Framework css)
 
 
 ## Mise en place

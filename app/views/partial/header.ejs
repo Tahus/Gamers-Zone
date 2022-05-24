@@ -1,51 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
-<head class="header">
+<head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/reset.css">
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/header.css">
-    <link rel="stylesheet" href="/css/login.css">
-    <link rel="stylesheet" href="/css/profil.css">
-    <link rel="stylesheet" href="/css/categories.css">
-    <link rel="stylesheet" href="/css/articles.css">
-    <link rel="stylesheet" href="/css/footer.css">
-    <link rel="stylesheet" href="/css/signup.css">
-    
-
     <title>Gamer's Zone</title>
+    <link rel="stylesheet" href="/dist/output.css" type="text/css">
 </head>
 <body>
+
     
-        <header class="header">
-        <img src="/docs/logos/2.svg" class="logo" alt="Logo Accueil">
-        <nav class="header__nav">
-            <ul>
-                <li><a class="button button--menu" href="/">Accueil</a></li>
-                <li><a class="button button--menu" href="/categories">Catégories</a></li>
-                <li><a class="button button--menu" href="/articles">Articles</a></li>
-                <li><a class="button button--menu" href="/contact">Contact</a></li>
-                
-               
-                
-                <% if (locals.userInfo)  { %> 
+    <section class="bg-[url('/docs/stylish-mesh-bg.jpg')] relative" >
 
-                 
 
-                    <li><a class="button button--menu" href="/user/<%=locals.userInfo.id %>"><%= locals.userInfo.user_name %> </a></li>
-                     
-                        
-                    <li><a class="button button--menu" href="/logOut">Déconnexion</a></li>
-                     
+        <%# Je crée ma grille avec 3 colonnes qui se reduiront une fois passé en responsive #%>
+        <nav class="fixed top-0 z-20 bg-gray-50 p-4 w-full grid grid-cols-none shadow-md md:max-w-7xl md:grid-cols-menu md:shadow-none md:relative md:mx-auto md:bg-transparent">
 
-                    
-                <% } else  {  %>
-                    <li><a class="button button--menu" href="/login">Se Connecter/s'inscrire</a></li>
-                <% } %> 
-                
-                
+
+            <div class="flex justify-between items-center md:justify-center">
+                <a href="/" >
+                    <img src="/docs/logos/2.svg" alt="logo accueil" class="w-12 md:w-20">
+                </a>
+    
+              <button class="icone-toggle bg-white rounded-md p-2 inline-flex items-center justify-center ring-1 ring-black ring-opacity-20 md:hidden">
+                <img src="/docs/logos/menu.svg" alt="icône hamburger"  class="h-6 w-6">
+              </button>
+            </div>
+    
+    
+            <ul class="toggle-menu hidden px-1 pt-6 bg-gray-50 flex flex-col md:flex md:bg-transparent md:flex-row md:space-x-10 md:w-auto md:pt-0 md:items-center md:justify-center">
+    
+              <li class="py-2 text-center border-t border-gray-200 md:border-0">
+                <a 
+                href="/"
+                class="font-medium text-lg text-zinc-800 hover:text-gray-900"
+                >Accueil</a>
+              </li>
+    
+              <li class="py-2 text-center border-t border-gray-200 md:border-0">
+                <a 
+                href="/categories"
+                class="font-medium text-lg text-zinc-800 hover:text-gray-900"
+                >Catégories</a>
+              </li>
+    
+              <li class="py-2 text-center border-t border-gray-200 md:border-0">
+                <a 
+                href="/articles"
+                class="font-medium text-lg text-zinc-800 hover:text-gray-900"
+                >Articles</a>
+              </li>
+    
+              <li class="py-2 text-center border-t border-b border-gray-200 md:border-0">
+                <a href="/contact" class="font-medium text-lg text-zinc-800 hover:text-gray-900">
+                    Contact
+                </a>
+              </li>
+
             </ul>
-        </nav>
-    </header>
+
+            <% if (locals.userInfo)  { %> 
+
+                <div class="py-2 text-center border-t border-gray-200 md:border-0">
+                    <a class="font-medium text-lg text-zinc-800 hover:text-gray-900" href="/user/<%=locals.userInfo.id %>">
+                        <%= locals.userInfo.user_name %>
+                    </a>
+                </div>
+                 
+    
+                <div class="toggle-menu flex justify-center items-center mt-6 md:mt-0 md:justify-end md:flex">
+                    <a href="/logOut" class="shadow-md px-6 py-2 border font-medium rounded-md text-indigo-600  hover:bg-gray-50 text-center w-40">
+                        Déconnexion
+                    </a>
+                </div>
+
+            <% } else  {  %>
+
+                <div class="toggle-menu hidden flex justify-center items-center mt-6 md:mt-0 md:justify-end md:flex">
+                    <a class="shadow-md px-6 py-2 border font-medium rounded-md text-indigo-600 bg-white hover:bg-gray-50 text-center w-60" href="/login">
+                       Se Connecter/S'inscrire
+                    </a>
+                </div>
+            <% } %> 
+            
+            
+          </nav>
+    
+        
+    </section>
+    
+</body>
+
+
+<%# Code JS pour ouvrir/fermer ma nav Bar en mode responsive #%>
+<script>
+    const menuElementsToToggle = document.querySelectorAll('.toggle-menu');
+
+    const iconeToggle = document.querySelector('.icone-toggle');
+
+    const toggleMenu = () => menuElementsToToggle.forEach(el => el.classList.toggle('hidden'));
+
+    iconeToggle.addEventListener('click', toggleMenu);
+</script>
