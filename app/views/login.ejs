@@ -1,0 +1,60 @@
+<%- include('./partial/header') %>
+
+
+    <div class="min-h-[845px] h-screen flex bg-gray-50">
+
+        <div class="flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-20 lg-flex-none xl:px-24">
+
+            <div class="mx-auto w-full max-w-sm lg:w-96">
+                <h2 class="mt-6 text-2xl font-extrabold text-gray-900 md:text-3xl">
+                    Me Connecter 
+                </h2>
+                
+                <a href="/signup" class="mt-2 text-sm  font-medium text-green-600 hover:text-green-500">
+                    Pas encore de compte? Inscrit-toi
+                </a>
+                 
+                <form  class="mt-4" method="POST">
+
+                    <div class="space-y-6 mt-6">
+
+                        <div>
+                            <label for="emailUser" class="block text-sm font-medium text-gray-700">E-mail</label>
+                            <input type="email" id="emailUser" class="mt-1 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-green-700 sm:text-sm" required >
+                        </div>
+
+                        <div>
+                            <label for="psw" class="block text-sm font-medium text-gray-700">Mot de passe</label>
+                            <input type="password" id="psw" class="mt-1 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-green-700 sm:text-sm" required >
+                        </div>
+
+                        <a href="#" class="mt-2 text-sm  font-medium text-green-600 hover:text-green-500">
+                            Mot de passe oublié ?
+                        </a>
+
+                    </div>
+
+                    <div class="flex items-center mt-8">
+
+                        <input type="checkbox" id="remember-me" class="w-4 h-4 rounded">
+                        <label for="remember-me" class="ml-2 block text-sm text-gray-900 ">Se souvenir de moi</label>
+
+                    </div>
+
+                    <button class="w-full py-3 px4 mt-4 rounded-md shadow-sm text-sm font-medium text-white bg-green-800">Je m'inscrit</button> 
+                </form>
+                
+            </div>
+
+        </div>
+
+        <div class=" hidden relative flex-1 sm:block">
+            <img src="/docs/gameuse.jpg" alt="image gameuse" class="h-full w-full object-cover">
+        </div>
+
+   </div>
+
+
+
+
+<%- include('./partial/footer') %>
