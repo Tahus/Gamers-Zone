@@ -1,0 +1,66 @@
+<%- include('./partial/header') %>
+
+
+
+<div class="min-h-[845px] h-screen flex bg-gray-50">
+
+  <div class="flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-20 lg-flex-none xl:px-24">
+
+      <div class="mx-auto w-full max-w-sm lg:w-96">
+          <h2 class="mt-6 text-2xl font-extrabold text-gray-900 md:text-3xl">
+              Inscription
+          </h2>
+          
+           
+          <form action="/signup" method="POST" class="mt-4">
+
+              <div class="space-y-6 mt-6">
+
+                <div>
+                  <label for="name" class="block text-sm font-medium text-gray-700">*Pseudo :</label>
+                  <input type="text" name="name" id="name" placeholder="Pseudo" class="mt-1 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm 
+                        focus:outline-none focus:border-green-700 sm:text-sm" required >
+                </div>
+
+                <div>
+                  <label for="email" class="block text-sm font-medium text-gray-700">*Adresse mail :</label>
+                  <input type="email" name="email" id="email" placeholder="E-mail" class="mt-1 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-green-700 sm:text-sm" required>
+                  
+                </div>
+
+                <div>
+                  <label for="birth_date" class="block text-sm font-medium text-gray-700">*Date de naissance :</label>
+                  <input type="date"  name="birth_date" id="birthdate" placeholder="JJ/MM/AAAA" class="mt-1 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-green-700 sm:text-sm" required >
+                </div>
+
+                <div>
+                  <label for="password" class="block text-sm font-medium text-gray-700">*Mot De Passe (4 characteres minimum) :</label>
+                  <input type="password" id="password"  name="password" placeholder="Mot De Passe" class="mt-1 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-green-700 sm:text-sm" minlength="4" required >
+                </div>
+                <div>
+                  <label for="repeat-password" class="block text-sm font-medium text-gray-700">*Confirmer Mot de passe  :</label>
+                  <input type="password" id="repeat-password" name="repeat_password" placeholder="Confirmez Mot De Passe"class="mt-1 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-green-700 sm:text-sm" minlength="4" required >
+                </div>
+
+              </div>
+
+              <p class="text-sm font-medium">* Champs requis</p>
+
+              
+
+              <button type="submit" class="w-full py-3 px4 mt-4 rounded-md shadow-sm text-sm font-medium text-white bg-green-800">Je m'inscrit</button> 
+          </form>
+          
+      </div>
+
+  </div>
+
+  <div class=" hidden relative flex-1 sm:block">
+      <img src="/docs/players.jpg" alt="image joueurs video" class="h-full w-full object-cover">
+  </div>
+
+</div>
+
+
+
+<%- include('./partial/footer') %>

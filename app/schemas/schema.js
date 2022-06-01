@@ -1,6 +1,6 @@
 const Joi = require('joi');
 
-const schema = Joi.object({
+const schema = Joi.object ({
     id: Joi.number()
         .integer(),
     name: Joi.string()

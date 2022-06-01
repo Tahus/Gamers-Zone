@@ -22,6 +22,7 @@ const authController = {
 
             const {error} = schema.validate(request.body);
             if (error) {
+                console.log(request.body);
                 console.log('attention probleme Joi');
                 return response.status(400).json(error.message);
             }
