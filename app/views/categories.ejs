@@ -1,0 +1,30 @@
+<%- include('./partial/header') %>
+
+
+
+<main class="h-fit mt-0 mx-4">
+  <h2 class=" pt-12 text-3xl font-bold mb-12 text-center">
+      Liste des catégories
+  </h2>
+  <style>
+    .zoom:hover img {
+      transform: scale(1.1);
+    }
+  </style>
+  
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <% for (category of categories){ %>
+      <a class="relative overflow-hidden rounded-lg" href="/categories/<%= category.id %>">
+        <img src="<%= category.url_image %>"
+            class="rounded-lg hover:brightness-110 hover:contrast-75 hover:scale-110 transition-all duration-300 ease-linear"/>
+        <h5 class="absolute bottom-2 left-2 font-bold text-white"><%= category.name %></h5>
+      </a>
+    <% } %>
+  </div>
+</main>
+
+
+
+
+<%- include('./partial/footer') %>
+

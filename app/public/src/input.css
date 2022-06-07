@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  body {
+    @apply h-screen flex flex-col justify-between;
+  }  
+}
+
 
 .cta-striper-bg {
   background-image: repeating-linear-gradient(135deg, rgba(151,151,151, 0.1) 0px, rgba(151,151,151, 0.1) 2px,transparent 2px, transparent 4px),linear-gradient(90deg, rgb(255,255,255),rgb(255,255,255));
