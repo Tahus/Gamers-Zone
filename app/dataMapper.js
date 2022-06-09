@@ -186,19 +186,33 @@ const dataMapper = {
     updateUser : async (userInfo, id) => {
 
         try {
+            let values_data = []
+            let statement = ''
+    
+            if (userInfo.password)
+            {
+                values_data = [userInfo.name, userInfo.email, userInfo.password, userInfo.birth_date, id]
+                statement = `UPDATE users SET user_name  = $1, email = $2, password = $3, birth_date = $4 WHERE id = $5 RETURNING *;`
+            }
+            else
+            {
+                values_data = [userInfo.name, userInfo.email, userInfo.birth_date, id]
+                statement = `UPDATE users SET user_name  = $1, email = $2, birth_date = $3 WHERE id = $4 RETURNING *;`
+            }
+    
             const queryUserById = {
-
-                text : `UPDATE users SET user_name = $1, email = $2, password = $3, birth_date = $4 WHERE id = $5 RETURNING *;`,
+    
+                text : statement,
      
              //Attention, il faut récuperer les valeurs qui se trouvent dans "name" côté input EJS pour userInfo
-             values : [userInfo.name, userInfo.email, userInfo.password, userInfo.birth_date, id]
+             values : values_data
         };
             const updateById = await client.query(queryUserById)
             // console.log('2.5 UpdateUserDataMapper > ', updateByDataMapper)
             return updateById;
-
+    
         } catch (error) {
-
+    
             console.log('Erreur update DataMapper > ', error);
         }
          

@@ -26,37 +26,44 @@ const userController = {
     },
 
     updateProfil : async (request, response) => {
-        
-        const id = parseInt(request.params.id,10);
-        const userInfo= request.body;
-        try {
-            const hash = await bcrypt.hash (userInfo.password, bcrypt.genSaltSync(10));
-            userInfo.password = hash;
-            userInfo.repeat_password = hash;
-
-           
+    
+        const id = parseInt(request.params.id, 10);
+        const userInfo = request.body;
+    
+        try 
+        {
+            if (userInfo.password && userInfo.repeat_password)
+            {
+                if (userInfo.password === userInfo.repeat_password)
+                {
+                    const hash = await bcrypt.hash (userInfo.password, bcrypt.genSaltSync(10));
+                    userInfo.password = hash
+                }             
+            }
+    
             // console.log("Infos de USER modifiés et hashés ! ", userInfo);
             const profilUpdate = await dataMapper.updateUser(userInfo, id);
-            if (userInfo.password === userInfo.repeat_password) {
-
-                const dataSession = request.session.userInfo = profilUpdate.rows[0];
-                    if (dataSession) {
-                        response.redirect (`/user/${profilUpdate.rows[0].id}`);
-                        console.log('les modif sont OK', profilUpdate); 
-                        console.log('ma modif user', userInfo);
-                        // console.log('Attention erreur!', error);
-                        
-                    } else {
-                        
-                       console.log("Attention erreur lors de l'update!", error);
-                       
-                    }
+    
+            const dataSession = request.session.userInfo = profilUpdate.rows[0];
+            if (dataSession) 
+            {
+                response.redirect (`/user/${profilUpdate.rows[0].id}`);
+                console.log('les modif sont OK :', profilUpdate); 
+                console.log('User modifié =>', userInfo);
+                // console.log('Attention erreur!', error);
+            } 
+            else 
+            {
+                console.log("Attention erreur lors de l'update!",
+                error);
             }
-        } catch (error) {
-             console.log('prbleme dans mon update controller', error);
+            
+        } 
+        catch (error) 
+        {
+            console.log('prbleme dans mon update controller', error);
         }
-    },
-
+    },  
 
 
 
