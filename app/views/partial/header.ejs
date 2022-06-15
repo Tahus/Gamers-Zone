@@ -10,11 +10,11 @@
 <body>
 
     
-    <header class="bg-[url('/docs/gamebg.jpg')] relative" >
+    <header class="bg-[url('/docs/neon.jpeg')] relative" >
 
 
         <%# Je crée ma grille avec 3 colonnes qui se reduiront une fois passé en responsive #%>
-        <nav class="fixed top-0 z-20 bg-gray-50 p-4 w-full grid grid-cols-none shadow-md md:max-w-7xl md:grid-cols-menu md:shadow-none md:relative md:mx-auto md:bg-transparent">
+        <nav class="ffixed top-0 z-20 bg-gray-50 p-4 w-full grid grid-cols-none shadow-md md:max-w-7xl md:grid-cols-menu md:shadow-none md:relative md:mx-auto md:bg-transparent">
 
 
             <div class="flex justify-between items-center md:justify-center">
@@ -22,26 +22,26 @@
                     <img src="/docs/logos/2.svg" alt="logo accueil" class="w-12 md:w-20">
                 </a>
     
-              <button class="icone-toggle bg-white rounded-md p-2 inline-flex items-center justify-center ring-1 ring-black ring-opacity-20 md:hidden">
+              <button class="icone-toggle bg-white rounded-md p-2 ring-1 ring-black ring-opacity-20 md:hidden">
                 <img src="/docs/logos/menu.svg" alt="icône hamburger"  class="h-6 w-6">
               </button>
             </div>
     
     
-            <ul class="toggle-menu hidden px-1 pt-6 bg-gray-50 flex flex-col md:flex md:bg-transparent md:flex-row md:space-x-10 md:w-auto md:pt-0 md:items-center md:justify-center">
+            <ul class="toggle-menu hidden px-1 pt-6 bg-gray-50 flex flex-col md:flex md:bg-transparent md:pt-0 md:flex-row md:space-x-10 md:w-auto md:items-center md:justify-center">
     
-              <li class="py-2 text-center border-t border-b border-gray-200 md:border-0">
+              <li class="py-2 text-center border-t border-gray-200 md:border-0">
                 <a 
                  href="/"
-                 class="font-medium text-lg text-gray-200 hover:text-gray-700">
+                 class="font-medium text-lg text-zinc-800 md:text-gray-200 hover:text-gray-400">
                  Accueil
                 </a>
               </li>
     
-              <li class="py-2 text-center border-t border-b border-gray-200 md:border-0">
+              <li class="py-2 text-center border-t border-gray-200 md:border-0">
                 <a 
                  href="/categories"
-                 class="font-medium text-lg text-gray-200 hover:text-gray-700">
+                 class="font-medium text-lg text-zinc-800 md:text-gray-200 hover:text-gray-400">
                  Catégories
                 </a>
               </li>
@@ -49,13 +49,13 @@
               <li class="py-2 text-center border-t border-gray-200 md:border-0">
                 <a 
                 href="/articles"
-                class="font-medium text-lg text-gray-200 hover:text-gray-700"
+                class="font-medium text-lg text-zinc-800 md:text-gray-200 hover:text-gray-400"
                 >Articles</a>
               </li>
     
               <li class="py-2 text-center border-t border-b border-gray-200 md:border-0">
                 <a href="/contact" 
-                   class="font-medium text-lg text-gray-200 hover:text-gray-700">
+                   class="font-medium text-lg text-zinc-800 md:text-gray-200 hover:text-gray-400 ">
                     Contact
                 </a>
               </li>
@@ -64,7 +64,7 @@
               <% if (locals.userInfo)  { %> 
     
                 <li class="py-2 text-center border-gray-200 md:border-0 ">
-                  <a class="font-medium text-lg text-indigo-800 hover:text-gray-900" href="/user/<%=locals.userInfo.id %>">
+                  <a class="font-medium text-lg text-indigo-800 hover:text-gray-600" href="/user/<%=locals.userInfo.id %>">
                       <%= locals.userInfo.user_name %>
                   </a>
                 </li>
