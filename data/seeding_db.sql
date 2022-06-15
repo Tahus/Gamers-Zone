@@ -4,9 +4,9 @@ INSERT INTO "categories" ( "name", "description", "url_image") VALUES
 ( 'Nouveautès De La Semaine', 'Tu retrouveras ici toutes les nouvelles sorties de la semaine', 'https://images.pexels.com/photos/7915414/pexels-photo-7915414.jpeg' ),
 ( 'Jeux Solo', 'tu cherches des jeux en solo? Tu es au bon endroit.', 'https://images.pexels.com/photos/7360387/pexels-photo-7360387.jpeg'),
 ( 'Populaires', 'Cette section regroupe les jeux les plus populaires de ces dernières années, jettes-y un oeil.', 'https://images.pexels.com/photos/3977908/pexels-photo-3977908.jpeg'),
-( 'Multijoueurs', 'Ici sont regroupès les jeux auxquels tu pourras jouer avec tes amis en ligne ou en local, tu trouveras sûrement ton bonheur !', 'https://images.pexels.com/photos/7915520/pexels-photo-7915520.jpeg'),
-( 'Action', 'Si tu es du genre à tirer sur tout ce qui bouge, tu es tombé sur la bonne catégorie.', 'https://images.pexels.com/photos/7047538/pexels-photo-7047538.jpeg'),
-('Sport', 'Quoi de plus important que le sport? eh bien les jeux de sport tiens !', 'https://images.pexels.com/photos/442576/pexels-photo-442576.jpeg');
+( 'Multijoueurs', 'Ici sont regroupès les jeux auxquels tu pourras jouer avec tes amis en ligne ou en local, tu trouveras sûrement ton bonheur !', 'https://images.pexels.com/photos/7862338/pexels-photo-7862338.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'),
+( 'Action', 'Si tu es du genre à tirer sur tout ce qui bouge, tu es tombé sur la bonne catégorie.', 'https://images.pexels.com/photos/6498960/pexels-photo-6498960.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'),
+( 'Sport', 'Quoi de plus important que le sport? eh bien les jeux de sport tiens !', 'https://images.pexels.com/photos/1174746/pexels-photo-1174746.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
 
 INSERT INTO "articles" ("title", "description", "url_image", "media_type", "categories_id" ) VALUES
 ('Dragons Legends arrive avec un mode solo !', 'Avec près d’une dizaine de millions de joueurs connectés chaque semaine,

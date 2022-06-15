@@ -48,20 +48,21 @@ const userController = {
             if (dataSession) 
             {
                 response.redirect (`/user/${profilUpdate.rows[0].id}`);
-                console.log('les modif sont OK :', profilUpdate); 
+
+                console.log('les modif sont OK :', profilUpdate);
+
                 console.log('User modifié =>', userInfo);
-                // console.log('Attention erreur!', error);
+               
             } 
             else 
             {
-                console.log("Attention erreur lors de l'update!",
-                error);
+                console.log("Attention erreur lors de l'update!", error);
             }
             
         } 
         catch (error) 
         {
-            console.log('prbleme dans mon update controller', error);
+            console.log('probleme dans mon update controller', error);
         }
     },  
 

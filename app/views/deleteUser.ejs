@@ -1,0 +1,75 @@
+<%- include('./partial/header') %>
+
+<% if (locals?.userInfo) { %>
+      
+<form action="/deleteUser/<%= locals.userInfo.id %>"  method="POST">
+    <!-- component -->
+ <div class="w-full relative mt-4 shadow-2xl rounded my-24 overflow-hidden">
+  <div class="top h-64 w-full bg-blue-600 overflow-hidden relative" >
+    <img src="https://cdn.pixabay.com/photo/2017/03/25/17/55/colorful-2174045_1280.png" alt="" class="bg w-full h-full object-cover object-center absolute z-0">
+    <div class="flex flex-col justify-center items-center relative h-full bg-black bg-opacity-50 text-white">
+      <img src="https://images.pexels.com/photos/4061662/pexels-photo-4061662.jpeg" class="h-24 w-24 object-cover rounded-full">
+      <h1 class="text-2xl font-semibold"><%=locals.userInfo.user_name %></h1>
+      <h4 class="text-sm font-semibold">Membre depuis le 12/05/2022</h4>
+    </div>
+  </div>
+  <div class="grid grid-cols-12 bg-white ">
+
+    <div class="col-span-12 w-full px-3 py-6 justify-center flex space-x-4 border-b border-solid md:space-x-0 md:space-y-4 md:flex-col md:col-span-2 md:justify-start ">
+
+      <a href="/user/<%= locals.userInfo.id %>" class="text-sm p-2 bg-indigo-900 text-white text-center rounded font-bold">Mon profile</a>
+
+      <a href="/categories" class="text-sm p-2 bg-indigo-200 text-center rounded font-semibold hover:bg-indigo-700 hover:text-gray-200">Les catégories</a>
+
+      <a href="/articles" class="text-sm p-2 bg-indigo-200 text-center rounded font-semibold hover:bg-indigo-700 hover:text-gray-200">Les articles</a>
+
+    </div>
+
+    <div class="col-span-12 md:border-solid md:border-l md:border-black md:border-opacity-25 h-full pb-12 md:col-span-10">
+      <div class="px-4 pt-4">
+        <form action="#" class="flex flex-col space-y-8">
+
+          <div>
+            <h3 class="text-2xl font-semibold">Supression de profil</h3>
+            <hr>
+          </div>
+
+          <div class="form-item pt-5">
+            <label class="text-xl ">Taper mon mot de passe</label>
+            <input   class="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2  mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200" type="password" name="password" id="password" placeholder="Mot De Passe" minlength="4">
+          </div>
+
+          <div class="pt-16">
+            <h3 class="text-2xl font-semibold ">Attention !</h3>
+            <hr>
+          </div>
+
+          <div class="w-full pt-9">
+            <h3 class="text-xl  ">Tu es sur le point de supprimer ton profil, cette action est irréversible . Mais si un jours tu veux revenir parmis nous, n'hésites pas à te créer un nouveau profil, tu seras toujours le bienvenue ! En attendant tu n'as plus qu'à cliquer sur le boutton supprimer .</h3>
+            
+          </div>
+
+          
+        </form>
+
+        <input type="submit" value="Supprimer mon profil" class="w-full text-blue-800 bg-teal-500 text-sm font-semibold rounded-lg hover:bg-teal-200 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">
+                       
+        </input>
+      </div>
+    </div>
+
+
+   </div>
+ </div>
+    
+</form>
+
+  
+
+<% } else { %>
+            <p>Impossible de supprimer le profil ! Tentes autre chose</p>
+        <% }%>
+
+
+
+<%- include('./partial/footer') %>

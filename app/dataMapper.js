@@ -187,25 +187,28 @@ const dataMapper = {
 
         try {
             let values_data = []
-            let statement = ''
-    
+            let request = ''
+            
+            // Si je modifies le mot de passe
             if (userInfo.password)
             {
                 values_data = [userInfo.name, userInfo.email, userInfo.password, userInfo.birth_date, id]
-                statement = `UPDATE users SET user_name  = $1, email = $2, password = $3, birth_date = $4 WHERE id = $5 RETURNING *;`
+                request = `UPDATE users SET user_name  = $1, email = $2, password = $3, birth_date = $4 WHERE id = $5 RETURNING *;`
             }
+
+            //Si je ne modifie pas le mot de passe
             else
             {
                 values_data = [userInfo.name, userInfo.email, userInfo.birth_date, id]
-                statement = `UPDATE users SET user_name  = $1, email = $2, birth_date = $3 WHERE id = $4 RETURNING *;`
+                request = `UPDATE users SET user_name  = $1, email = $2, birth_date = $3 WHERE id = $4 RETURNING *;`
             }
     
             const queryUserById = {
     
-                text : statement,
+                text : request,
      
              //Attention, il faut récuperer les valeurs qui se trouvent dans "name" côté input EJS pour userInfo
-             values : values_data
+                values : values_data
         };
             const updateById = await client.query(queryUserById)
             // console.log('2.5 UpdateUserDataMapper > ', updateByDataMapper)
