@@ -27,7 +27,7 @@ const authController = {
         return response.status(400).json(error.message);
       }
 
-      //Je hashe mon password
+      //Je hashe le password
       const hash = await bcrypt.hash(userInfo.password, bcrypt.genSaltSync(10));
       userInfo.password = hash;
       userInfo.repeat_password = hash;
