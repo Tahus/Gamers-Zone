@@ -8,13 +8,6 @@ const express = require('express');
 //Je require mon middleware (pour empecher les attaques XSS)
 const bodySanitizer = require('./app/middlewares/body-sanitizer');
 
-
-
-//Je require methodOverride
-const methodOverride = require('method-override');
-
- 
-
 //J'execute express 
 const app = express();
 
@@ -27,8 +20,6 @@ app.use(express.urlencoded({extended: true}));
 
 app.use(bodySanitizer);
 
-//Pour pouvoir utiliser la méthode PUT
-app.use(methodOverride());
 
 // utilise le moteur de rendu EJS
 app.set('view engine', 'ejs');
@@ -43,14 +34,7 @@ app.use(express.static('./app/public'));
 const router = require('./app/router');
 
 
-
-const cookieParser = require('cookie-parser');
-
-app.use(cookieParser());
-
-
-
-//on met en place le système de session après l'installation du package express-session
+//Je met en place le système de session après l'installation du package express-session
 const session = require('express-session');
  
 app.use(session(
@@ -62,13 +46,13 @@ app.use(session(
 ));
 
 app.use((request, response, next) => {
-    //si la propriété userInfo de la session vaut undefined, on la crée
+    //si la propriété userInfo de la session vaut undefined, je la crée
     if (!request.session.userInfo  ) {
         request.session.userInfo = false;     
     } 
     response.locals.userInfo = request.session.userInfo;
-    //cette methode est dans index.js, donc appelé pour TOUTES les requêtes
-    //donc j'aurais la valeur userInfo dans toutes les vues
+    //Je stock la session dans l'objet locals, ainsi je peux accéder 
+    //à la variable contenant la session dans toutes mes vues EJS
     next();
 });
 

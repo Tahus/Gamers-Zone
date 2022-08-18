@@ -23,6 +23,7 @@ CREATE TABLE "articles" (
   "id" INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   "title" TEXT NOT NULL,
   "description" TEXT NOT NULL,
+  "resume" TEXT NOT NULL,
   "url_image" TEXT NOT NULL,
   "media_type" TEXT NOT NULL,
   "categories_id" INTEGER NOT NULL REFERENCES "categories"("id"),

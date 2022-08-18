@@ -1,24 +1,26 @@
 const dataMapper = require('../dataMapper');
 const bcrypt = require('bcrypt');
 
+
+//Methode pour acceder à la page utilisateur
 const userController = {
 
-    //Methode pour acceder à la page utilisateur 
+     
     getProfilPage : async (request, response) => {
+
         //Je récupère les infos de mon user via son ID
         // userleId => l'ID prèsent dans mon URL
         let userId = Number(request.params.id);
+
         try {
             let getUserId = await dataMapper.getUserById(userId);
+
+            //Si j'accède à l'id de l'user alors la view est rendue
             if (getUserId.rows[0]){
                 //locals permet de faire le pont entre mon back et mon front(ejs) pour y envoyer mes données
-                // request.session.userInfo = getDataId.rows[0];
-                // console.log('data avant update', getDataId.rows[0]);
-                // response.locals.userInfo = request.session.userInfo;
-                // console.log('reponse locale', response.locals.userInfo);
                 response.render('user'); 
             } else {
-                response.status(404).send(`User with id ${userInfo.id} not found`);
+                response.status(404).send(`L'user avec l'ID ${userInfo.id} non trouvé`);
             }
         } catch (error) {
              console.log("Error profil By Id >", error);
@@ -32,19 +34,25 @@ const userController = {
     
         try 
         {
+            // Si l'user modifie le password et la confirmation du password
             if (userInfo.password && userInfo.repeat_password)
             {
+                //Je vérifie que les deux champs ont la même modification
                 if (userInfo.password === userInfo.repeat_password)
                 {
+                    //Puis je hash le password
                     const hash = await bcrypt.hash (userInfo.password, bcrypt.genSaltSync(10));
                     userInfo.password = hash
                 }             
             }
-    
-            // console.log("Infos de USER modifiés et hashés ! ", userInfo);
+            
+            // Puis je fait appel à la méthode du dataMapper
             const profilUpdate = await dataMapper.updateUser(userInfo, id);
-    
+            
+            // Je mets à jours ma session avec les nouvelles modifications
             const dataSession = request.session.userInfo = profilUpdate.rows[0];
+
+            //Si la modification à bien été prise en compte
             if (dataSession) 
             {
                 response.redirect (`/user/${profilUpdate.rows[0].id}`);
@@ -80,9 +88,12 @@ const userController = {
             // 1) Récupérer le mot de passe NON HASSHE que rentre l'user depuis le front au moment de supprimer
             const { password } = request.body
 
-            // 2) Récupérer le mot de passe HASHEE de ce user en base de donnée
+            
             console.log("l'id de mon user, en session", request.session.userInfo.id)
+
             const user = await dataMapper.getUserById(request.session.userInfo.id);
+            
+            // 2) Récupérer le mot de passe HASHEE de ce user en base de donnée
             const hashedPassword = user.rows[0].password;
             console.log('contenu de password', password);
             console.log('contenu de hashedPassword', hashedPassword);

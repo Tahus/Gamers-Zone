@@ -12,9 +12,10 @@ const articlesController = {
         const articleId = request.params.id;
 
         try {
-
+            //Je fais appele à ma requete du dataMapper et du params associé que je stocke dans une variable.
             const Onearticle = await dataMapper.getArticleById(articleId);
             
+            // Si j'arrive à accéder à mon élément en question
             if (Onearticle.rows[0]){
 
                 //Je rends ma page article en lui passant les données d'un article
@@ -30,13 +31,7 @@ const articlesController = {
         } catch (error) {
             console.log('erreur accès Onearticle', error);
         }
-    }
-     
-
-            
-
-          
-        
+    }    
     
     
 }

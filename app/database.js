@@ -1,5 +1,4 @@
 //Connexion à la BDD
-
 //Je require pg
 const { Client } = require('pg');
 
@@ -10,16 +9,6 @@ const client = new Client();
 
 // Je connect le client ( et  je le laisse connecté)
 client.connect();
-
-
-//Si je veux gérer les erreurs de Connexion
-//client.connect(err =>{
-// if(err){
-// } else {
-//    console.log('connected');
-// }
-//});
-
 
 
 //j'exporte (rendre dispo dans un autre fichier) mon client connecté

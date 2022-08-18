@@ -1,7 +1,7 @@
 const sanitizer = require ('sanitizer');
 
 const bodySanitizer = (req, res, next) => {
-    //for..in permet d'accder aux clés d'un objet
+    //for..in permet d'accéder aux clés d'un objet
     for (let propName in req.body) {
         console.log('Avant : ', req.body[propName]);
         //la méthode escape échappe les caractères HTML
